@@ -1,0 +1,3 @@
+[submodule "dependencies/cos-graphics"]
+	path = dependencies/cos-graphics
+	url = https://github.com/OppositeNor/cos-graphics.git
