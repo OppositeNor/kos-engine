@@ -8,30 +8,30 @@ KosEngine is a graphics library that can do simple 2D game development. It is st
 
 ## Ready to use :heavy_check_mark:
 
-    * Resource wrapping
+* Resource wrapping
 
-    * Image(Sprite) rendering
+* Image(Sprite) rendering
 
-    * Input handler
+* Input handler
 
-    * Frame animation
+* Frame animation
 
-    * Text rendering
+* Text rendering
 
-    * Component alignment
+* Component alignment
 
-    * Component inheritance
+* Component inheritance
 
-    * Component rendering
+* Component rendering
 
 ---
 
 ## Unfinished :no_entry:
 
-    * Class reference documentation
+* Class reference documentation
 
 ## Planned :arrow_heading_up:
 
-    * Multiple window support
+* Multiple window support
 
-    * Tutorial on how to use.
+* Tutorial on how to use.
