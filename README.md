@@ -35,3 +35,9 @@ KosEngine is a graphics library that can do simple 2D game development. It is st
 * Multiple window support
 
 * Tutorial on how to use.
+
+* Audio&Media
+
+* Physics
+
+* Particles
