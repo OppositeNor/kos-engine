@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.15)
 
 project(KosEngine)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_subdirectory(./dependencies/cos-graphics)
 add_subdirectory(${CGRW_PATH})
+
+add_subdirectory(src/component)
+add_subdirectory(src/game)
+add_subdirectory(src/interface)
+add_subdirectory(src/math)
+add_subdirectory(src/input_handler)
 
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/lib/${CMAKE_SYSTEM_NAME})
 file (MAKE_DIRECTORY ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
@@ -17,8 +26,10 @@ if (USE_UTF16LE MATCHES ON)
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/dependencies/cos-graphics/include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(${PROJECT_NAME} 
+    ${KE_SOURCES}
     ./src/main.cpp
 )
 
