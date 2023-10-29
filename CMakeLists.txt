@@ -5,6 +5,11 @@ project(KosEngine)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
+list(APPEND CG_RESOURCES image_resource.cgures)
+list(APPEND CG_RESOURCES text_resource.cgures)
+list(APPEND CG_RESOURCES font_resource.cgures)
+
 add_subdirectory(./dependencies/cos-graphics)
 add_subdirectory(${CGRW_PATH})
 
