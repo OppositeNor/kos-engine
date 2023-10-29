@@ -1,5 +1,6 @@
 #pragma once
 #include <initializer_list>
+#include <cmath>
 #include "kos_engine/defs.hpp"
 
 #include "cos_graphics/graphics.h"
@@ -12,12 +13,10 @@ public:
     static constexpr unsigned int SIZE = N;
     static constexpr unsigned int DIM = N;
 
-protected:
-
     union{
         float data[SIZE];
         struct{
-            float x, y, z;
+            float x, y;
         };
     };
 
@@ -45,6 +44,10 @@ public:
             ++i;
         }
     }
+
+    KEVector(float p_x, float p_y)
+        : x(p_x), y(p_y)
+    {}
     
     inline operator float*() noexcept
     {
@@ -66,9 +69,26 @@ public:
         return data[i];
     }
 
+    inline float Length() const noexcept
+    {
+        float result = 0;
+        for (unsigned int i = 0; i < SIZE; ++i)
+        {
+            result += data[i] * data[i];
+        }
+        return sqrt(result);
+    }
+
+    inline KEVector<2> Normalized() const noexcept
+    {
+        float length = Length();
+        if (length == 0)
+            return *this;
+        return *this / length;
+    }
+
     inline operator CGVector2() const noexcept
     {
-        CG_ERROR_COND_RETURN(SIZE != 2, CGConstructVector2(0.0f, 0.0f), CGSTR("The size of the KEVector is not equal to 2"));
         return CGConstructVector2(x, y);
     }
 
@@ -131,6 +151,8 @@ public:
 
 };
 
+using KEVector2 = KEVector<2>;
+
 template<unsigned int N>
 inline float KEDot(const KEVector<N>& vec_1, const KEVector<N>& vec_2) noexcept
 {
@@ -142,7 +164,7 @@ inline float KEDot(const KEVector<N>& vec_1, const KEVector<N>& vec_2) noexcept
     return result;
 }
 
-inline float KECross(const KEVector<2>& vec_1, const KEVector<2>& vec_2) noexcept
+inline float KECross(const KEVector2& vec_1, const KEVector2& vec_2) noexcept
 {
     return vec_1[0] * vec_2[1] - vec_1[1] * vec_2[0];
 }

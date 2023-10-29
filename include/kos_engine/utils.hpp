@@ -46,11 +46,11 @@ public:
      * @param p_position The position of the vector to be rotated.
      * @param p_rotation The angle to rotate.
      * @param p_center The center of the rotation.
-     * @return CGVector2 The position of the vector after rotation.
+     * @return KEVector2 The position of the vector after rotation.
      */
-    static inline CGVector2 GetVectorRotatedPosition(const CGVector2& p_position, float p_rotation, const CGVector2 p_center)
+    static inline KEVector2 GetVectorRotatedPosition(const KEVector2& p_position, float p_rotation, const KEVector2 p_center)
     {
-        CGVector2 result;
+        KEVector2 result;
         float sin_theta = sin(p_rotation);
         float cos_theta = cos(p_rotation);
         float delta_x = p_position.x - p_center.x;
@@ -60,7 +60,7 @@ public:
         return result;
     }
 
-    static inline float Dot(const CGVector2& p_vec_1, const CGVector2& p_vec_2) noexcept
+    static inline float Dot(const KEVector2& p_vec_1, const KEVector2& p_vec_2) noexcept
     {
         return p_vec_1.x * p_vec_2.x + p_vec_1.y * p_vec_2.y;
     }

@@ -296,7 +296,7 @@ public:
         /**
          * @brief The position of the component.
          */
-        CGVector2 position;
+        KEVector2 position;
         /**
          * @brief The rotation of the component.
          */
@@ -304,7 +304,7 @@ public:
         /**
          * @brief The scale of the component.
          */
-        CGVector2 scale;
+        KEVector2 scale;
 
         /**
          * @brief The depth of the component. The higher the depth, the more in behind the component is.
@@ -318,7 +318,7 @@ public:
          * @param p_rotation The rotation of the component.
          * @param p_scale The scale of the component.
          */
-        KETransform(const CGVector2& p_position = {0.0f, 0.0f}, float p_rotation = 0.0f, const CGVector2& p_scale = {1.0f, 1.0f});
+        KETransform(const KEVector2& p_position = {0.0f, 0.0f}, float p_rotation = 0.0f, const KEVector2& p_scale = {1.0f, 1.0f});
 
         /**
          * @brief Get the transform matrix of the component.
@@ -529,37 +529,37 @@ public:
      * @brief Convert a global position to a relative position.
      * 
      * @param global_position The global position to be converted.
-     * @return CGVector2 The relative position of the component.
+     * @return KEVector2 The relative position of the component.
      */
-    CGVector2 ToRelativePosition(const CGVector2& global_position) const;
+    KEVector2 ToRelativePosition(const KEVector2& global_position) const;
 
     /**
      * @brief Convert a relative position to a global position.
      * 
      * @param relative_position The relative position to be converted.
-     * @return CGVector2 The global position of the component.
+     * @return KEVector2 The global position of the component.
      */
-    CGVector2 ToGlobalPosition(const CGVector2& relative_position) const;
+    KEVector2 ToGlobalPosition(const KEVector2& relative_position) const;
     
     /**
      * @brief Get the global position of the component.
      * 
-     * @return CGVector2 The global position of the component.
+     * @return KEVector2 The global position of the component.
      */
-    CGVector2 GetGlobalPosition() const;
+    KEVector2 GetGlobalPosition() const;
 
     /**
      * @brief Set the global position of the component.
      * 
      */
-    void SetGlobalPosition(const CGVector2& global_position);
+    void SetGlobalPosition(const KEVector2& global_position);
 
     /**
      * @brief Set the Global Position object
      * 
-     * @return CGVector2 The global position of the component.
+     * @return KEVector2 The global position of the component.
      */
-    CGVector2 SetGlobalPosition() const;
+    KEVector2 SetGlobalPosition() const;
 
     /**
      * @brief Set the Depth object.

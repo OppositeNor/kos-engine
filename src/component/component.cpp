@@ -5,7 +5,7 @@
 #include "cos_graphics/log.h"
 #include <cmath>
 
-KEComponent::KETransform::KETransform(const CGVector2& p_position, float p_rotation, const CGVector2& p_scale)
+KEComponent::KETransform::KETransform(const KEVector2& p_position, float p_rotation, const KEVector2& p_scale)
     : position(p_position), rotation(p_rotation), scale(p_scale)
 {
     
@@ -19,9 +19,9 @@ KEMat3::KEMat3 KEComponent::KETransform::GetTransformMatrix() const noexcept
 KEMat3::KEMat3 KEComponent::KETransform::GetInvTransformMatrix() const noexcept
 {
     return KEMat3::GetScaleMatrix(
-        CGVec2(KEUtils::GetReciprocal(scale.x), KEUtils::GetReciprocal(scale.y))) 
+        KEVector2(KEUtils::GetReciprocal(scale.x), KEUtils::GetReciprocal(scale.y))) 
         * KEMat3::GetInvRoationMatrix(rotation)
-        * KEMat3::GetPositionMatrix(-1 * position);
+        * KEMat3::GetPositionMatrix(position * -1.0f);
 }
 
 void KEComponent::OnEnter()
@@ -132,7 +132,7 @@ void KEComponent::Tick(double p_delta_time)
     Update(p_delta_time);
 }
 
-CGVector2 KEComponent::GetGlobalPosition() const
+KEVector2 KEComponent::GetGlobalPosition() const
 {
     if (parent == nullptr)
         return GetTransform().position;
@@ -163,21 +163,21 @@ KEMat3::KEMat3 KEComponent::GetInvGlobalTransformMatrix() noexcept
     return inv_global_transform_matrix;
 }
 
-CGVector2 KEComponent::ToRelativePosition(const CGVector2& global_position) const
+KEVector2 KEComponent::ToRelativePosition(const KEVector2& global_position) const
 {
     if (parent == nullptr)
         return global_position;
     return parent->GetInvGlobalTransformMatrix() * GetTransform().GetInvTransformMatrix() * global_position;
 }
 
-CGVector2 KEComponent::ToGlobalPosition(const CGVector2& relative_position) const
+KEVector2 KEComponent::ToGlobalPosition(const KEVector2& relative_position) const
 {
     if (parent == nullptr)
         return relative_position;
     return parent->GetGlobalTransformMatrix() * relative_position;
 }
 
-void KEComponent::SetGlobalPosition(const CGVector2& global_position)
+void KEComponent::SetGlobalPosition(const KEVector2& global_position)
 {
     if (parent == nullptr)
         GetTransform().position = global_position;

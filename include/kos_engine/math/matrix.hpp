@@ -211,6 +211,7 @@ public:
                 result[i] += data_m[i][j] * p_vector[j];
             }
         }
+        return result;
     }
 };
 
@@ -225,7 +226,7 @@ namespace KEMat3
      * @param position The position to get the matrix out from
      * @return KEMat3 The position matrix
      */
-    KEMat3 GetPositionMatrix(const CGVector2& p_position) noexcept;
+    KEMat3 GetPositionMatrix(const KEVector2& p_position) noexcept;
 
     /**
      * @brief Get the rotation matrix
@@ -249,7 +250,7 @@ namespace KEMat3
      * @param scale The scale to get the matrix out from
      * @return KEMat3 The scale matrix
      */
-    KEMat3 GetScaleMatrix(const CGVector2& p_scale) noexcept;
+    KEMat3 GetScaleMatrix(const KEVector2& p_scale) noexcept;
 }
 
     

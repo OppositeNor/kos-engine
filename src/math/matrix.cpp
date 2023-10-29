@@ -2,7 +2,7 @@
 
 namespace KEMat3
 {
-    KEMat3 GetPositionMatrix(const CGVector2& p_position) noexcept
+    KEMat3 GetPositionMatrix(const KEVector2& p_position) noexcept
     {
         return KEMat3({1.0f, 0.0f, p_position.x,
                     0.0f, 1.0f, p_position.y,
@@ -27,7 +27,7 @@ namespace KEMat3
                     0.0f, 0.0f, 1.0f});
     }
     
-    KEMat3 GetScaleMatrix(const CGVector2& p_scale) noexcept
+    KEMat3 GetScaleMatrix(const KEVector2& p_scale) noexcept
     {
         return KEMat3({p_scale.x, 0.0f, 0.0f,
                     0.0f, p_scale.y, 0.0f,
