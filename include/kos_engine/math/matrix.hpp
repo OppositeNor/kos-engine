@@ -1,6 +1,7 @@
 #pragma once
 #include "cos_graphics/graphics.h"
 #include "cos_graphics/log.h"
+#include "kos_engine/math/vector.hpp"
 #include <cmath>
 #include <initializer_list>
 
@@ -22,11 +23,17 @@ private:
 
 public:
     /**
-     * @brief Constructor
+     * @brief Construct a new KEMatrix object
      */
     KEMatrix() noexcept
     {}
 
+    /**
+     * @brief Construct a new KEMatrix object
+     * 
+     * @param data The data of the KEMatrix (row-major order)
+     * @param size The size of the data
+     */
     KEMatrix(const float* data, int size)
     {
         CG_ERROR_COND_EXIT(size != SIZE, -1, CGSTR("The size of the data is not equal to the size of the KEMatrix"));
@@ -47,7 +54,7 @@ public:
         for (auto iter = list.begin(); iter != list.end(); ++iter)
         {
             data[i] = *iter;
-            i++;
+            ++i;
         }
     }
 
@@ -176,6 +183,34 @@ public:
             data[i] += p_other.data[i];
         }
         return *this;
+    }
+
+    inline KEVector<N> operator* (const KEVector<N>& p_vector) const noexcept
+    {
+        KEVector<N> result;
+        for (int i = 0; i < N; ++i)
+        {
+            result[i] = 0;
+            for (int j = 0; j < N; ++j)
+            {
+                result[i] += data_m[i][j] * p_vector[j];
+            }
+        }
+        return result;
+    }
+
+    inline KEVector<N-1> operator* (const KEVector<N-1>& p_vector) const noexcept
+    {
+        constexpr int result_dim = N - 1;
+        KEVector<result_dim> result;
+        for (int i = 0; i < result_dim; ++i)
+        {
+            result[i] = data_m[i][N-1];
+            for (int j = 0; j < result_dim; ++j)
+            {
+                result[i] += data_m[i][j] * p_vector[j];
+            }
+        }
     }
 };
 
