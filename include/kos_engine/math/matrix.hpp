@@ -253,7 +253,6 @@ namespace KEMat3
     KEMat3 GetScaleMatrix(const KEVector2& p_scale) noexcept;
 }
 
-    
 inline static CGVector2 operator*(const KEMat3::KEMat3& p_m, const CGVector2& p_v) noexcept
 {
     return (CGVector2){p_m[0][0] * p_v.x + p_m[0][1] * p_v.y + p_m[0][2],

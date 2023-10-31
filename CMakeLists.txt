@@ -22,9 +22,6 @@ add_subdirectory(src/input_handler)
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/lib/${CMAKE_SYSTEM_NAME})
 file (MAKE_DIRECTORY ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
 
-set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin/exe/${CMAKE_SYSTEM_NAME})
-file (MAKE_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
-
 
 if (USE_UTF16LE MATCHES ON)
     add_definitions(-DCG_USE_UTF16LE)
@@ -33,9 +30,10 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}/dependencies/cos-graphics/include)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_executable(${PROJECT_NAME} 
+add_subdirectory(src/test)
+
+add_library(${PROJECT_NAME} 
     ${KE_SOURCES}
-    ./src/main.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 

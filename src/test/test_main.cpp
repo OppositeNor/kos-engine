@@ -11,13 +11,13 @@ int main()
     auto sprite2 = new KESprite(CGCreateVisualImage(CGSTR("test1"), KEGame::GetInstance()->GetGameWindow(), CG_FALSE));
     sprite2->GetLabel() = CGSTR("sprite2");
     sprite->AddChild(sprite2);
-    //sprite->GetTransform().scale = CGConstructVector2(2.0f, 2.0f);
+    sprite->GetTransform().scale = KEVector2(2.0f, 2.0f);
     sprite2->GetTransform().position = KEVector2(100.0f, -100.0f);
-    //sprite->AlignLeft();
+    sprite->AlignLeft();
     auto sprite3 = new KESprite(CGCreateVisualImage(CGSTR("test1"), KEGame::GetInstance()->GetGameWindow(), CG_FALSE));
     sprite3->GetLabel() = CGSTR("sprite3");
     sprite3->GetTransform().position = KEVector2(0.0f, -100.0f);
-    //sprite3->AlignLeftToRight(sprite2);
+    sprite3->AlignLeftToRight(sprite2);
     //sprite->SetVisible(false);
     sprite3->QueueFree();
     //auto text = new CGText(CGSTR("test_text"), CGConstructTextProperty(60, 60, 20, 5));
