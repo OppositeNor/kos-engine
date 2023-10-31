@@ -149,6 +149,35 @@ public:
         return *this;
     }
 
+    inline bool operator ==(KEVector<N> other) noexcept
+    {
+        for (unsigned int i = 0; i < SIZE; ++i)
+        {
+            if (data[i] != other[i])
+                return false;
+        }
+        return true;
+    }
+
+    inline bool operator !=(KEVector<N> other) noexcept
+    {
+        return !(*this == other);
+    }
+
+    inline operator KEString() const noexcept
+    {
+        KEString result = "KEVector<";
+        result += KE_TO_STRING(SIZE);
+        result += ">(";
+        for (unsigned int i = 0; i < SIZE; ++i)
+        {
+            result += KE_TO_STRING(data[i]);
+            if (i != SIZE - 1)
+                result += ", ";
+        }
+        result += ")";
+        return result;
+    }
 };
 
 using KEVector2 = KEVector<2>;
