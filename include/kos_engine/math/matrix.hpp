@@ -217,6 +217,36 @@ public:
         }
         return result;
     }
+
+    inline bool operator== (const KEMatrix<N> p_mat)
+    {
+        for (int i = 0; i < SIZE; ++i)
+        {
+            if (data[i] != p_mat.data[i])
+                return false;
+        }
+        return true;
+    }
+
+    inline operator KEString()
+    {
+        KEString result = CGSTR("KEMatrix<");
+        result += KE_TO_STRING(DIM);
+        result += CGSTR(">(");
+        for (unsigned int i = 0; i < DIM; ++i)
+        {
+            result += CGSTR("{");
+            for (unsigned int j = 0; j < DIM; ++j)
+            {
+                result += KE_TO_STRING(data_m[i][j]);
+                if (i < DIM - 1 || j < DIM - 1)
+                    result += CGSTR(", ");
+            }
+            result += CGSTR("}");
+        }
+        result += CGSTR(")");
+        return result;
+    }
 };
 
 
