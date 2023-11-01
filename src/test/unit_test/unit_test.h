@@ -145,7 +145,7 @@ private:
         }
         catch (...)
         {
-            CheckExpect(true, CGSTR("Expected to throw an exeption with message: ") + p_throw_msg + 
+            CheckExpect(false, CGSTR("Expected to throw an exeption with message: ") + p_throw_msg + 
                 CGSTR(", but get an exception with unknown message instead."), p_file, p_line);
             return;
         }
@@ -168,8 +168,8 @@ private:
         {
             CGChar buff[1024];
             CharToCGChar(typeid(T).name(), buff, 1024);
-            CheckExpect(true, CGSTR("Expected to throw an exeption with type: ") + KEString(buff) + 
-                CGSTR(", but get an exception with unknown type instead."), p_file, p_line);
+            CheckExpect(false, CGSTR("Expected to throw an exeption with type: ") + KEString(buff) + 
+                CGSTR(", but get an exception with other type instead."), p_file, p_line);
             return;
         }
         CheckExpect(is_throw, CGSTR("Expected to throw an exception, but not."), p_file, p_line);
