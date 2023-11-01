@@ -117,6 +117,7 @@ private:
         }
         catch (...)
         {
+            CheckExpect(true, CGSTR("Passes."), p_file, p_line);
             return;
         }
         CheckExpect(true, CGSTR("Expected to throw an exception, but not."), p_file, p_line);
@@ -162,6 +163,7 @@ private:
         }
         catch (const T& e)
         {
+            CheckExpect(true, CGSTR("Passes."), p_file, p_line);
             return;
         }
         catch (...)
@@ -200,6 +202,12 @@ private:
     static void KETMatrixConstruct0();
     static void KETMatrixConstruct1();
     static void KETMatrixConstruct2();
+    static void KETMatrixConstruct3();
+
+    static void KETMatrixToString0();
+    static void KETMatrixToString1();
+    static void KETMatrixToString2();
+    static void KETMatrixToString3();
 
     
 };

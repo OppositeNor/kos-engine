@@ -19,7 +19,6 @@ private:
         float data_m[N][N];
     };
     static float matrix_buffer[SIZE];
-    inline static bool is_identity_initialized = false;
 
 public:
     /**
