@@ -102,8 +102,8 @@ void KEUnitTest::KETMatrixConstruct1()
 
 void KEUnitTest::KETMatrixConstruct2()
 {
-    KEMatrix<2> mat = {{1.0f, 2.0f},
-                   {3.0f, 4.0f}};
+    KEMatrix<2> mat = {1.0f, 2.0f,
+                       3.0f, 4.0f};
     KE_EXPECT_VALUES_EQUAL(mat[0][0], 1.0f);
     KE_EXPECT_VALUES_EQUAL(mat[0][1], 2.0f);
     KE_EXPECT_VALUES_EQUAL(mat[1][0], 3.0f);
@@ -126,18 +126,21 @@ void KEUnitTest::KETMatrixToString0()
                        {0.0f, 1.0f, 0.0f}, 
                        {0.0f, 0.0f, 1.0f}};
     KE_EXPECT_STRINGS_EQUAL((KEString)mat, 
-        CGSTR("KEMatrix<3>({1.000000, 0.000000, 0.000000, }{0.000000, 1.000000, 0.000000, }{0.000000, 0.000000, 1.000000})"));
+        CGSTR("KEMatrix<3>({1.000000, 0.000000, 0.000000}{0.000000, 1.000000, 0.000000}{0.000000, 0.000000, 1.000000})"));
 }
 void KEUnitTest::KETMatrixToString1()
 {
     KEMatrix<0> mat = {};
+    KE_EXPECT_STRINGS_EQUAL((KEString)mat, CGSTR("KEMatrix<0>()"));
 
 }
 void KEUnitTest::KETMatrixToString2()
 {
-
+    KEMatrix<2> mat = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KE_EXPECT_STRINGS_EQUAL((KEString)mat, CGSTR("KEMatrix<2>({1.000000, 2.000000}{3.000000, 4.000000})"));
 }
 void KEUnitTest::KETMatrixToString3()
 {
-
+    KEMatrix<1> mat = {1.0f};
+    KE_EXPECT_STRINGS_EQUAL((KEString)mat, CGSTR("KEMatrix<1>({1.000000})"));
 }

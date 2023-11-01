@@ -183,12 +183,10 @@ private:
     static void KETVectorConstruct1();
     static void KETVectorConstruct2();
     static void KETVectorConstruct3();
-
     static void KETVectorToString0();
     static void KETVectorToString1();
     static void KETVectorToString2();
     static void KETVectorToString3();
-
     static void KETVectorCross0();
     static void KETVectorCross1();
     static void KETVectorCross2();
@@ -203,7 +201,6 @@ private:
     static void KETMatrixConstruct1();
     static void KETMatrixConstruct2();
     static void KETMatrixConstruct3();
-
     static void KETMatrixToString0();
     static void KETMatrixToString1();
     static void KETMatrixToString2();

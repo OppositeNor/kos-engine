@@ -238,7 +238,7 @@ public:
             for (unsigned int j = 0; j < DIM; ++j)
             {
                 result += KE_TO_STRING(data_m[i][j]);
-                if (i < DIM - 1 || j < DIM - 1)
+                if (j < DIM - 1)
                     result += CGSTR(", ");
             }
             result += CGSTR("}");

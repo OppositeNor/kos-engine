@@ -39,6 +39,9 @@ void KEUnitTest::Start()
     KETMatrixConstruct3();
 
     KETMatrixToString0();
+    KETMatrixToString1();
+    KETMatrixToString2();
+    KETMatrixToString3();
     
 
     if (test_failed_count == 0)
