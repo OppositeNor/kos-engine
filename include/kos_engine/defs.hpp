@@ -1,5 +1,6 @@
 #include "cos_graphics/defs.h"
 #include <string>
+#include <stdexcept>
 
 #ifdef CG_USE_WCHAR
     using KEString = std::wstring;

@@ -36,7 +36,8 @@ public:
      */
     KEMatrix(const float* data, int size)
     {
-        CG_ERROR_COND_EXIT(size != SIZE, -1, CGSTR("The size of the data is not equal to the size of the KEMatrix"));
+        if (size != SIZE)
+            throw std::invalid_argument("Size of the data is not equal to the size of the matrix");
         for (int i = 0; i < size; ++i)
         {
             this->data[i] = data[i];
@@ -49,7 +50,8 @@ public:
      */
     KEMatrix(const std::initializer_list<float>& list)
     {
-        CG_ERROR_COND_EXIT(list.size() != SIZE, -1, CGSTR("The size of the initializer list is not equal to the size of the KEMatrix"));
+        if (list.size() != SIZE)
+            throw std::invalid_argument("Size of the data is not equal to the size of the matrix");
         int i = 0;
         for (auto iter = list.begin(); iter != list.end(); ++iter)
         {
@@ -64,12 +66,14 @@ public:
      */
     KEMatrix(const std::initializer_list<std::initializer_list<float>>& list)
     {
-        CG_ERROR_COND_EXIT(list.size() != N, -1, CGSTR("The size of the initializer list is not equal to the size of the KEMatrix"));
+        if (list.size() != N)
+            throw std::invalid_argument("The size of the initializer list is not equal to the size of the KEMatrix");
         int i = 0;
         int j = 0;
         for (auto iter = list.begin(); iter != list.end(); ++iter)
         {
-            CG_ERROR_COND_EXIT(iter->size() != N, -1, CGSTR("The size of the initializer list is not equal to the size of the KEMatrix"));
+            if (iter->size() != N)
+                throw std::invalid_argument("The size of the initializer list is not equal to the size of the KEMatrix");
             j = 0;
             for (auto iter2 = iter->begin(); iter2 != iter->end(); ++iter2)
             {

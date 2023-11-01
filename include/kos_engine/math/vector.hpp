@@ -27,7 +27,8 @@ public:
 
     KEVector(const float* data, unsigned int size)
     {
-        CG_ERROR_COND_EXIT(size != SIZE, -1, CGSTR("The size of the data is not equal to the size of the KEVector"));
+        if (size != SIZE)
+            throw std::invalid_argument("Size of the data is not equal to the size of the matrix");
         for (unsigned int i = 0; i < size; ++i)
         {
             this->data[i] = data[i];
@@ -36,7 +37,8 @@ public:
 
     KEVector(const std::initializer_list<float>& list)
     {
-        CG_ERROR_COND_EXIT(list.size() != SIZE, -1, CGSTR("The size of the initializer list is not equal to the size of the KEVector"));
+        if (list.size() != SIZE)
+            throw std::invalid_argument("Size of the data is not equal to the size of the matrix");
         unsigned int i = 0;
         for (auto iter = list.begin(); iter != list.end(); ++iter)
         {

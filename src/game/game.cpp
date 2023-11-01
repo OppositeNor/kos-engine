@@ -19,7 +19,8 @@ KEGame::~KEGame()
 
 KEGame* KEGame::GetInstance()
 {
-    CG_ERROR_COND_EXIT(game_instance == nullptr, -1, CGSTR("The game instance is NULL. Please initialize the game before getting game instance."));
+    if (game_instance == nullptr)
+        throw "The game instance is NULL. Please initialize the game before getting game instance.";
     return game_instance;
 }
 
@@ -73,7 +74,8 @@ void KEGame::InitGame(KEGameFactory*&& p_factory, unsigned int p_width, unsigned
         p_title.c_str(),
         window_sub_property);
     CGSetKeyCallback(KEGame::KeyInputCallback);
-    CG_ERROR_COND_EXIT(game_instance->game_window == nullptr, -1, CGSTR("Failed to create window"));
+    if (game_instance->game_window == nullptr)
+        throw "Failed to create window";
     CG_PRINT(CGSTR("Window created."));
     CG_PRINT(CGSTR("Game initialized."));
     game_instance->game_initialized = true;
@@ -93,7 +95,10 @@ void KEGame::InitGame(KEGameFactory*&& p_factory, unsigned int p_width, unsigned
 
 void KEGame::StartGame()
 {
-    CG_ERROR_CONDITION(game_instance == nullptr || !game_instance->game_initialized, CGSTR("Game is not initialized. Please initialize the game before starting the game."));
+    if (game_instance == nullptr)
+        throw "The game instance is NULL. Please initialize the game before starting the game.";
+    if (!game_instance->game_initialized)
+        throw "The game is not initialized. Please initialize the game before starting the game.";
     game_instance->Ready();
     game_instance->root_component = game_factory->CreateRootComponent();
     game_instance->root_component->OnEnter();
@@ -102,7 +107,10 @@ void KEGame::StartGame()
 
 void KEGame::ExitGame()
 {
-    CG_ERROR_CONDITION(game_instance == nullptr || !game_instance->game_initialized, CGSTR("Game is not initialized. Please initialize the game before exiting the game."));
+    if (game_instance == nullptr)
+        throw "The game instance is NULL. Please initialize the game before exiting the game.";
+    if (!game_instance->game_initialized)
+        throw "The game is not initialized. Please initialize the game before exiting the game.";
     delete game_instance->root_component;
     delete game_instance;
     game_instance = nullptr;
@@ -132,7 +140,10 @@ void KEGame::RemoveComponent(KEComponent* p_component)
 
 void KEGame::SetWindowClearColor(const CGColor& p_color)
 {
-    CG_ERROR_CONDITION(game_instance == nullptr || !game_instance->game_initialized, CGSTR("Game is not initialized. Please initialize the game before setting the window clear color."));
+    if (game_instance == nullptr)
+        throw "The game instance is NULL. Please initialize the game before setting the window clear color.";
+    if (!game_instance->game_initialized)
+        throw "The game is not initialized. Please initialize the game before setting the window clear color.";
     CGSetClearScreenColor(p_color);
 }
 
