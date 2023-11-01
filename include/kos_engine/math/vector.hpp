@@ -199,3 +199,12 @@ inline float KECross(const KEVector2& vec_1, const KEVector2& vec_2) noexcept
 {
     return vec_1[0] * vec_2[1] - vec_1[1] * vec_2[0];
 }
+
+inline KEVector<3> KECross(const KEVector<3>& vec_1, const KEVector<3>& vec_2) noexcept
+{
+    return KEVector<3>({
+        vec_1[1] * vec_2[2] - vec_1[2] * vec_2[1],
+        vec_1[2] * vec_2[0] - vec_1[0] * vec_2[2],
+        vec_1[0] * vec_2[1] - vec_1[1] * vec_2[0]
+    });
+}
