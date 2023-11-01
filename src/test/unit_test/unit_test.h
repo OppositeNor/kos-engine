@@ -77,7 +77,7 @@ private:
      * 
      * @param p_func The expression to test.
      */
-    inline static void ExpectExpressionThrow(const std::function<void()>& p_func)
+    static void ExpectExpressionThrow(const std::function<void()>& p_func)
     {
         bool is_throw = false;
         try
@@ -96,7 +96,7 @@ private:
      * @param p_func The expression to test.
      * @param p_throw_msg The expected message.
      */
-    inline static void ExpectExpressionThrow(const std::function<void()>& p_func, const KEString& p_throw_msg)
+    static void ExpectExpressionThrow(const std::function<void()>& p_func, const KEString& p_throw_msg)
     {
         bool is_throw = false;
         try
@@ -121,8 +121,31 @@ private:
         CheckExpect(is_throw, CGSTR("Expected to throw an exception, but not."));
     }
 
+    template <typename T>
+    static void ExpectExpressionThrow(const std::function<void()>& p_func)
+    {
+        bool is_throw = false;
+        try
+        {
+            p_func();
+        }
+        catch (const T& e)
+        {
+            return;
+        }
+        catch (...)
+        {
+            CGChar buff[1024];
+            CharToCGChar(typeid(T).name(), buff, 1024);
+            CheckExpect(true, CGSTR("Expected to throw an exeption with type: ") + KEString(buff) + 
+                CGSTR(", but get an exception with unknown type instead."));
+            return;
+        }
+        CheckExpect(is_throw, CGSTR("Expected to throw an exception, but not."));
+    }
+
     /** Vector Test Start **/
-    
+
     static void KETVectorConstruct0();
     static void KETVectorConstruct1();
     static void KETVectorConstruct2();

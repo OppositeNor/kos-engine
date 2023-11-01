@@ -16,7 +16,7 @@ void KEUnitTest::KETVectorConstruct1()
 
 void KEUnitTest::KETVectorConstruct2()
 {
-    ExpectExpressionThrow([]()
+    ExpectExpressionThrow<std::invalid_argument>([]()
     {
         KEVector<2> v = {0.0f, 0.0f, 0.0f};
     });
