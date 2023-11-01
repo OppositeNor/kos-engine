@@ -166,16 +166,16 @@ public:
 
     inline operator KEString() const noexcept
     {
-        KEString result = "KEVector<";
+        KEString result = CGSTR("KEVector<");
         result += KE_TO_STRING(SIZE);
-        result += ">(";
+        result += CGSTR(">(");
         for (unsigned int i = 0; i < SIZE; ++i)
         {
             result += KE_TO_STRING(data[i]);
             if (i != SIZE - 1)
-                result += ", ";
+                result += CGSTR(", ");
         }
-        result += ")";
+        result += CGSTR(")");
         return result;
     }
 };
