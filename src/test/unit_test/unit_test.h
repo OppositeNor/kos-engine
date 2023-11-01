@@ -47,18 +47,37 @@ private:
      */
     static void CheckExpect(bool p_condition, const KEString& p_message);
 
+    /**
+     * @brief Check if two values are equal.
+     * 
+     * @tparam T1 Type of value 1.
+     * @tparam T2 Type of value 2.
+     * @param val_1 Value 1.
+     * @param val_2 Value 2.
+     */
     template <typename T1, typename T2>
     inline static void ExpectValuesEqual(T1&& val_1, T2&& val_2)
     {
         CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
             CGSTR(", but get ") + KE_TO_STRING(val_1) + CGSTR(" instead."));
     }
+    /**
+     * @brief Check if two strings are equal.
+     * 
+     * @param p_str_1 The first string.
+     * @param p_str_2 The second string.
+     */
     inline static void ExpectStringsEqual(const KEString& p_str_1, const KEString& p_str_2)
     {
         CheckExpect(p_str_1 == p_str_2, CGSTR("Expected to get string: \"") + p_str_2 + 
             CGSTR("\", but get \"") + p_str_1 + CGSTR("\" instead."));
     }
-    inline static void ExpectExpressionThrow(std::function<void()> p_func)
+    /**
+     * @brief Test if an expression throws an exception.
+     * 
+     * @param p_func The expression to test.
+     */
+    inline static void ExpectExpressionThrow(const std::function<void()>& p_func)
     {
         bool is_throw = false;
         try
@@ -71,7 +90,13 @@ private:
         }
         CheckExpect(true, CGSTR("Expected to throw an exception, but not."));
     }
-    inline static void ExpectExpressionThrow(std::function<void()> p_func, const KEString p_throw_msg)
+    /**
+     * @brief Test if an expression throws an exception with a specific message.
+     * 
+     * @param p_func The expression to test.
+     * @param p_throw_msg The expected message.
+     */
+    inline static void ExpectExpressionThrow(const std::function<void()>& p_func, const KEString& p_throw_msg)
     {
         bool is_throw = false;
         try
@@ -97,6 +122,7 @@ private:
     }
 
     /** Vector Test Start **/
+    
     static void KETVectorConstruct0();
     static void KETVectorConstruct1();
     static void KETVectorConstruct2();
