@@ -3,12 +3,12 @@
 unsigned int KEUnitTest::test_count = 0;
 unsigned int KEUnitTest::test_failed_count = 0;
 
-void KEUnitTest::CheckExpect(bool p_condition, const KEString& p_message)
+void KEUnitTest::CheckExpect(bool p_condition, const KEString& p_message, const char* p_file, int p_line)
 {
     ++test_count;
     if (!p_condition)
     {
-        CG_PRINT_WITH_FUNCTION(CGSTR("Test failed: %s"), p_message.c_str());
+        CG_PRINT(CGSTR("Test failed at file: %hs, line: %d.\nOutput: %s"), p_file, p_line, p_message.c_str());
         ++test_failed_count;
     }
 }

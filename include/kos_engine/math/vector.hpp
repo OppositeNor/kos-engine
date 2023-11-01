@@ -51,12 +51,12 @@ public:
         : x(p_x), y(p_y)
     {}
     
-    inline operator float*() noexcept
+    explicit inline operator float*() noexcept
     {
         return data;
     }
 
-    inline operator const float*() const noexcept
+    explicit inline operator const float*() const noexcept
     {
         return data;
     }
