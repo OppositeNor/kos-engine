@@ -9,8 +9,53 @@
 
 #include "cos_graphics/log.h"
 
-#define KET_EXPECT_VALUES_EQUAL(val1, val2) \
-    if ((val1) != (val2)) { \
-        CG_PRINT_WITH_FUNCTION(CGSTR("Test failed: Expected value: %s, but get %s instead."), KE_TO_STRING(val1), KE_TO_STRING(val2)); \
-        return CG_FALSE; \
+/**
+ * @brief Unit test class.
+ * This class is used for unit testing.
+ */
+class KEUnitTest
+{
+public:
+
+    /**
+     * @brief Start the unit test.
+     */
+    static void Start();
+
+private:
+
+    /**
+     * @brief The number of tests that have been run.
+     */
+    static unsigned int test_count;
+    /**
+     * @brief The number of tests that have failed.
+     */
+    static unsigned int test_failed_count;
+
+    /**
+     * @brief Check if the condition is true. If not, fail a test and print out a message.
+     * @param p_message The message to print out.
+     * @param p_condition The condition of the test.
+     */
+    static void CheckExpect(const KEString& p_message, bool p_condition);
+
+    template <typename T1, typename T2>
+    inline static void ExpectValuesEqual(T1&& val_1, T2&& val_2)
+    {
+        CheckExpect(CGSTR("Expected values to be equal: ") + KE_TO_STRING(val_1) + CGSTR(" == ") + KE_TO_STRING(val_2), val_1 == val_2);
     }
+    inline static void ExpectStringsEqual(const KEString& p_str_1, const KEString& p_str_2)
+    {
+        CheckExpect(CGSTR("Expected strings to be equal: ") + p_str_1 + CGSTR(" == ") + p_str_2, p_str_1 == p_str_2);
+    }
+
+    /** Vector Test Start **/
+
+    static void KETVectorToString0();
+    static void KETVectorToString1();
+    static void KETVectorToString2();
+    static void KETVectorToString3();
+
+    /** Vector Test End **/
+};
