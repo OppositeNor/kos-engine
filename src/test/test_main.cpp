@@ -1,9 +1,10 @@
+#include "unit_test/unit_test.h"
+
 #include "kos_engine/game.h"
 #include "kos_engine/game_factory.h"
 #include "kos_engine/component/sprite.h"
 #include "kos_engine/component/text.h"
 #include "kos_engine/utils.hpp"
-#include "unit_test/unit_test.h"
 int main()
 {
     KEGame::InitGame(new KEGameFactory(), 1280, 720, CGSTR("Test"), CG_FALSE, CG_FALSE);

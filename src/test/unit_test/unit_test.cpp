@@ -8,7 +8,7 @@ void KEUnitTest::CheckExpect(const KEString& p_message, bool p_condition)
     ++test_count;
     if (!p_condition)
     {
-        ExpectStringsEqual(CGSTR("Test failed: %s"), p_message.c_str());
+        CG_PRINT_WITH_FUNCTION(CGSTR("Test failed: %s"), p_message.c_str());
         ++test_failed_count;
     }
 }
@@ -22,5 +22,8 @@ void KEUnitTest::Start()
     KETVectorToString2();
     KETVectorToString3();
 
-    CG_PRINT(CGSTR("Unit test finished. %d tests run, %d tests failed."), test_count, test_failed_count);
+    if (test_failed_count == 0)
+        CG_PRINT(CGSTR("Unit test finished. %d test run, All tests passed."), test_count);
+    else
+        CG_PRINT(CGSTR("Unit test finished. %d tests run, %d tests failed."), test_count, test_failed_count);
 }
