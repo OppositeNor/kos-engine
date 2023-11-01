@@ -46,3 +46,38 @@ void KEUnitTest::KETVectorToString3()
     KEVector<0> v = {};
     KE_EXPECT_STRINGS_EQUAL((KEString)v, CGSTR("KEVector<0>()"));
 }
+
+void KEUnitTest::KETVectorCross0()
+{
+    KEVector<3> v1 = {0.0f, 0.0f, 0.0f};
+    KEVector<3> v2 = {0.0f, 0.0f, 0.0f};
+    KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), KEVector<3>({0.0f, 0.0f, 0.0f}));
+}
+
+void KEUnitTest::KETVectorCross1()
+{
+    KEVector<3> v1 = {1.0f, 0.0f, 0.0f};
+    KEVector<3> v2 = {0.0f, 0.0f, 1.0f};
+    KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), KEVector<3>({0.0f, -1.0f, 0.0f}));
+}
+
+void KEUnitTest::KETVectorCross2()
+{
+    KEVector<3> v1 = {1.0f, 0.0f, 0.0f};
+    KEVector<3> v2 = {0.0f, 1.0f, 0.0f};
+    KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), KEVector<3>({0.0f, 0.0f, 1.0f}));
+}
+
+void KEUnitTest::KETVectorCross3()
+{
+    KEVector<2> v1 = {1.0f, 0.0f};
+    KEVector<2> v2 = {0.0f, 1.0f};
+    KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), 1.0f);
+}
+
+void KEUnitTest::KETVectorCross4()
+{
+    KEVector<2> v1 = {1.0f, 0.0f};
+    KEVector<2> v2 = {0.0f, 0.0f};
+    KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), 0.0f);
+}

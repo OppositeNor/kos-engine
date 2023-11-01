@@ -187,5 +187,11 @@ private:
     static void KETVectorToString2();
     static void KETVectorToString3();
 
+    static void KETVectorCross0();
+    static void KETVectorCross1();
+    static void KETVectorCross2();
+    static void KETVectorCross3();
+    static void KETVectorCross4();
+
     /** Vector Test End **/
 };

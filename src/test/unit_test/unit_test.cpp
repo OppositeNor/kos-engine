@@ -27,6 +27,12 @@ void KEUnitTest::Start()
     KETVectorToString2();
     KETVectorToString3();
 
+    KETVectorCross0();
+    KETVectorCross1();
+    KETVectorCross2();
+    KETVectorCross3();
+    KETVectorCross4();
+
     if (test_failed_count == 0)
         CG_PRINT(CGSTR("Unit test finished. %d test run, All tests passed."), test_count);
     else
