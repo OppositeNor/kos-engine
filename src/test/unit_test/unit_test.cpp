@@ -3,7 +3,7 @@
 unsigned int KEUnitTest::test_count = 0;
 unsigned int KEUnitTest::test_failed_count = 0;
 
-void KEUnitTest::CheckExpect(const KEString& p_message, bool p_condition)
+void KEUnitTest::CheckExpect(bool p_condition, const KEString& p_message)
 {
     ++test_count;
     if (!p_condition)
@@ -16,6 +16,11 @@ void KEUnitTest::CheckExpect(const KEString& p_message, bool p_condition)
 void KEUnitTest::Start()
 {
     CG_PRINT(CGSTR("Running unit test..."));
+
+    KETVectorConstruct0();
+    KETVectorConstruct1();
+    KETVectorConstruct2();
+    KETVectorConstruct3();
 
     KETVectorToString0();
     KETVectorToString1();

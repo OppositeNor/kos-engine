@@ -13,6 +13,8 @@
 
 #include "kos_engine/defs.hpp"
 #include "cos_graphics/log.h"
+#include "cos_graphics/utils.h"
+#include <functional>
 
 /**
  * @brief Unit test class.
@@ -43,21 +45,62 @@ private:
      * @param p_message The message to print out.
      * @param p_condition The condition of the test.
      */
-    static void CheckExpect(const KEString& p_message, bool p_condition);
+    static void CheckExpect(bool p_condition, const KEString& p_message);
 
     template <typename T1, typename T2>
     inline static void ExpectValuesEqual(T1&& val_1, T2&& val_2)
     {
-        CheckExpect(CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
-            CGSTR(", but get ") + KE_TO_STRING(val_1) + CGSTR(" instead."), val_1 == val_2);
+        CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
+            CGSTR(", but get ") + KE_TO_STRING(val_1) + CGSTR(" instead."));
     }
     inline static void ExpectStringsEqual(const KEString& p_str_1, const KEString& p_str_2)
     {
-        CheckExpect(CGSTR("Expected to get string: \"") + p_str_2 + 
-            CGSTR("\", but get \"") + p_str_1 + CGSTR("\" instead."), p_str_1 == p_str_2);
+        CheckExpect(p_str_1 == p_str_2, CGSTR("Expected to get string: \"") + p_str_2 + 
+            CGSTR("\", but get \"") + p_str_1 + CGSTR("\" instead."));
+    }
+    inline static void ExpectExpressionThrow(std::function<void()> p_func)
+    {
+        bool is_throw = false;
+        try
+        {
+            p_func();
+        }
+        catch (...)
+        {
+            return;
+        }
+        CheckExpect(true, CGSTR("Expected to throw an exception, but not."));
+    }
+    inline static void ExpectExpressionThrow(std::function<void()> p_func, const KEString p_throw_msg)
+    {
+        bool is_throw = false;
+        try
+        {
+            p_func();
+        }
+        catch (const std::exception& e)
+        {
+            CGChar buff[1024];
+            CharToCGChar(e.what(), buff, 1024);
+            KEString str = KEString(buff);
+            CheckExpect(str == p_throw_msg, CGSTR("Expected to throw an exeption with message: ") + p_throw_msg + 
+                CGSTR(", but get \"") + str + CGSTR("\" instead."));
+            return;
+        }
+        catch (...)
+        {
+            CheckExpect(true, CGSTR("Expected to throw an exeption with message: ") + p_throw_msg + 
+                CGSTR(", but get an exception with unknown message instead."));
+            return;
+        }
+        CheckExpect(is_throw, CGSTR("Expected to throw an exception, but not."));
     }
 
     /** Vector Test Start **/
+    static void KETVectorConstruct0();
+    static void KETVectorConstruct1();
+    static void KETVectorConstruct2();
+    static void KETVectorConstruct3();
 
     static void KETVectorToString0();
     static void KETVectorToString1();

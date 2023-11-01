@@ -1,6 +1,34 @@
 #include "kos_engine/math/vector.hpp"
 #include "../unit_test.h"
 
+void KEUnitTest::KETVectorConstruct0()
+{
+    KEVector<2> v = {0.0f, 0.0f};
+    ExpectValuesEqual(v.x, 0.0f);
+    ExpectValuesEqual(v.y, 0.0f);
+}
+
+void KEUnitTest::KETVectorConstruct1()
+{
+    KEVector<0> v = {};
+    ExpectValuesEqual(v.DIM, 0);
+}
+
+void KEUnitTest::KETVectorConstruct2()
+{
+    ExpectExpressionThrow([]()
+    {
+        KEVector<2> v = {0.0f, 0.0f, 0.0f};
+    });
+}
+
+void KEUnitTest::KETVectorConstruct3()
+{
+    KEVector<2> v = {0.0f, 0.0f};
+    ExpectValuesEqual(v.x, 0.0f);
+    ExpectValuesEqual(v.y, 0.0f);
+}
+
 void KEUnitTest::KETVectorToString0()
 {
     KEVector<2> v = {0.0f, 0.0f};
@@ -18,5 +46,6 @@ void KEUnitTest::KETVectorToString2()
 }
 void KEUnitTest::KETVectorToString3()
 {
-    
+    KEVector<0> v = {};
+    ExpectStringsEqual((KEString)v, CGSTR("KEVector<0>()"));
 }
