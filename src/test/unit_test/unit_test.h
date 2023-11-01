@@ -194,4 +194,12 @@ private:
     static void KETVectorCross4();
 
     /** Vector Test End **/
+
+    /** Matrix Test Start**/
+
+    static void KETMatrixConstruct0();
+    static void KETMatrixConstruct1();
+    static void KETMatrixConstruct2();
+
+    
 };

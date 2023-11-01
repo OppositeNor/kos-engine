@@ -1,5 +1,6 @@
 #include "kos_engine/math/vector.hpp"
 #include "../unit_test.h"
+#include "kos_engine/math/matrix.hpp"
 
 void KEUnitTest::KETVectorConstruct0()
 {
@@ -80,4 +81,12 @@ void KEUnitTest::KETVectorCross4()
     KEVector<2> v1 = {1.0f, 0.0f};
     KEVector<2> v2 = {0.0f, 0.0f};
     KE_EXPECT_VALUES_EQUAL(KECross(v1, v2), 0.0f);
+}
+
+void KEUnitTest::KETMatrixConstruct0()
+{
+    KEMatrix<3> mat = {{1.0f, 0.0f, 0.0f}, 
+                       {0.0f, 1.0f, 0.0f}, 
+                       {0.0f, 0.0f, 1.0f}};
+    
 }
