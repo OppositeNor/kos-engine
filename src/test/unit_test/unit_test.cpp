@@ -21,28 +21,39 @@ void KEUnitTest::Start()
     KETVectorConstruct1();
     KETVectorConstruct2();
     KETVectorConstruct3();
-
     KETVectorToString0();
     KETVectorToString1();
     KETVectorToString2();
     KETVectorToString3();
-
     KETVectorCross0();
     KETVectorCross1();
     KETVectorCross2();
     KETVectorCross3();
     KETVectorCross4();
-
     KETMatrixConstruct0();
     KETMatrixConstruct1();
     KETMatrixConstruct2();
     KETMatrixConstruct3();
-
     KETMatrixToString0();
     KETMatrixToString1();
     KETMatrixToString2();
     KETMatrixToString3();
-    
+    KETMatrixAdd0();
+    KETMatrixAdd1();
+    KETMatrixAdd2();
+    KETMatrixAdd3();
+    KETMatrixSub0();
+    KETMatrixSub1();
+    KETMatrixSub2();
+    KETMatrixSub3();
+    KETMatrixMul0();
+    KETMatrixMul1();
+    KETMatrixMul2();
+    KETMatrixMul3();
+    KETMatrixMul4();
+    KETMatrixMul5();
+    KETMatrixMul6();
+    KETMatrixMul7();
 
     if (test_failed_count == 0)
         CG_PRINT(CGSTR("Unit test finished. %d test run, All tests passed."), test_count);

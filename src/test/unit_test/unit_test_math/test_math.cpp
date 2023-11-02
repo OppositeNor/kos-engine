@@ -144,3 +144,127 @@ void KEUnitTest::KETMatrixToString3()
     KEMatrix<1> mat = {1.0f};
     KE_EXPECT_STRINGS_EQUAL((KEString)mat, CGSTR("KEMatrix<1>({1.000000})"));
 }
+void KEUnitTest::KETMatrixAdd0()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEMatrix<2> mat2 = {{5.0f, 6.0f}, {7.0f, 8.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 + mat2, KEMatrix<2>({{6.0f, 8.0f}, {10.0f, 12.0f}}));
+}
+void KEUnitTest::KETMatrixAdd1()
+{
+    KEMatrix<1> mat1 = {1.0f};
+    KEMatrix<1> mat2 = {2.0f};
+    KE_EXPECT_VALUES_EQUAL(mat1 + mat2, KEMatrix<1>({3.0f}));
+}
+void KEUnitTest::KETMatrixAdd2()
+{
+    KEMatrix<0> mat1 = {};
+    KEMatrix<0> mat2 = {};
+    KE_EXPECT_VALUES_EQUAL(mat1 + mat2, KEMatrix<0>());
+}
+void KEUnitTest::KETMatrixAdd3()
+{
+    KEMatrix<3> mat1 = {{1.0f, 2.0f, 3.0f}, 
+                        {4.0f, 5.0f, 6.0f}, 
+                        {7.0f, 8.0f, 9.0f}};
+    KEMatrix<3> mat2 = {{10.0f, 13.0f, 16.0f}, 
+                        {11.0f, 14.0f, 17.0f}, 
+                        {12.0f, 15.0f, 18.0f}};
+    KEMatrix<3> mat3 = {{1.0f, 0.0f, 0.0f}, 
+                        {0.0f, 1.0f, 0.0f}, 
+                        {0.0f, 0.0f, 1.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 + mat2 + mat3, 
+        KEMatrix<3>({12.0f, 15.0f, 19.0f,
+                    15.0f, 20.0f, 23.0f,
+                    19.0f, 23.0f, 28.0f}));
+}
+
+void KEUnitTest::KETMatrixSub0()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEMatrix<2> mat2 = {{5.0f, 6.0f}, {7.0f, 8.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 - mat2, KEMatrix<2>({{-4.0f, -4.0f}, {-4.0f, -4.0f}}));
+}
+void KEUnitTest::KETMatrixSub1()
+{
+    KEMatrix<0> mat1 = {};
+    KEMatrix<0> mat2 = {};
+    KE_EXPECT_VALUES_EQUAL(mat1 - mat2, KEMatrix<0>());
+}
+void KEUnitTest::KETMatrixSub2()
+{
+    KEMatrix<3> mat1 = {{10.0f, 13.0f, 16.0f}, 
+                        {11.0f, 14.0f, 17.0f}, 
+                        {12.0f, 15.0f, 18.0f}};
+    KEMatrix<3> mat2 = {{1.0f, 2.0f, 3.0f}, 
+                        {4.0f, 5.0f, 6.0f}, 
+                        {7.0f, 8.0f, 9.0f}};
+    KEMatrix<3> mat3 = {{1.0f, 0.0f, 0.0f}, 
+                        {0.0f, 1.0f, 0.0f}, 
+                        {0.0f, 0.0f, 1.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 - mat2 - mat3, 
+        KEMatrix<3>({8.0f, 11.0f, 13.0f,
+                    7.0f, 8.0f, 11.0f,
+                    5.0f, 7.0f, 8.0f}));
+}
+void KEUnitTest::KETMatrixSub3()
+{
+    KEMatrix<1> mat1 = {1.0f};
+    KEMatrix<1> mat2 = {2.0f};
+    KE_EXPECT_VALUES_EQUAL(mat1 - mat2, KEMatrix<1>({-1.0f}));
+    KE_EXPECT_VALUES_EQUAL(mat1 -= mat2, KEMatrix<1>({-1.0f}));
+    KE_EXPECT_VALUES_EQUAL(mat1, KEMatrix<1>({-1.0f}));
+}
+
+void KEUnitTest::KETMatrixMul0()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEMatrix<2> mat2 = {{5.0f, 6.0f}, {7.0f, 8.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 * mat2, KEMatrix<2>({{19.0f, 22.0f}, {43.0f, 50.0f}}));
+    KE_EXPECT_VALUES_EQUAL(mat1 *= mat2, KEMatrix<2>({{19.0f, 22.0f}, {43.0f, 50.0f}}));
+    KE_EXPECT_VALUES_EQUAL(mat1, KEMatrix<2>({{19.0f, 22.0f}, {43.0f, 50.0f}}));
+}
+
+void KEUnitTest::KETMatrixMul1()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEMatrix<2> mati = {{1.0f, 0.0f}, {0.0f, 1.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 * mati, mat1);
+}
+void KEUnitTest::KETMatrixMul2()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEMatrix<2> mat0 = {{0.0f, 0.0f}, {0.0f, 0.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 * mat0, mat0);
+}
+void KEUnitTest::KETMatrixMul3()
+{
+    KEMatrix<0> mat1 = {};
+    KEMatrix<0> mat2 = {};
+    KE_EXPECT_VALUES_EQUAL(mat1 * mat2, KEMatrix<0>());
+}
+
+void KEUnitTest::KETMatrixMul4()
+{
+    KEMatrix<2> mat1 = {{1.0f, 2.0f}, {3.0f, 4.0f}};
+    KEVector<2> vec1 = {1.0f, 2.0f};
+    KE_EXPECT_VALUES_EQUAL(mat1 * vec1, KEVector<2>({5.0f, 11.0f}));
+}
+void KEUnitTest::KETMatrixMul5()
+{
+    KEMatrix<3> mat1 = {{1.0f, 2.0f, 3.0f}, {3.0f, 4.0f, 2.0f}, {0.0f, 0.0f, 1.0f}};
+    KEVector<2> vec1 = {1.0f, 2.0f};
+    KE_EXPECT_VALUES_EQUAL(mat1 * vec1, KEVector<2>({8.0f, 13.0}));
+}
+void KEUnitTest::KETMatrixMul6()
+{
+    KEMatrix<3> mat1 = {{1.0f, 2.0f, 3.0f}, {3.0f, 4.0f, 2.0f}, {0.0f, 0.0f, 1.0f}};
+    KE_EXPECT_VALUES_EQUAL(mat1 * 5, KEMatrix<3>({{5.0f, 10.0f, 15.0f}, {15.0f, 20.0f, 10.0f}, {0.0f, 0.0f, 5.0f}}));
+    KE_EXPECT_VALUES_EQUAL(mat1 *= 5, KEMatrix<3>({{5.0f, 10.0f, 15.0f}, {15.0f, 20.0f, 10.0f}, {0.0f, 0.0f, 5.0f}}));
+    KE_EXPECT_VALUES_EQUAL(mat1, KEMatrix<3>({{5.0f, 10.0f, 15.0f}, {15.0f, 20.0f, 10.0f}, {0.0f, 0.0f, 5.0f}}));
+}
+void KEUnitTest::KETMatrixMul7()
+{
+    KEMatrix<0> mat1 = {};
+    KE_EXPECT_VALUES_EQUAL(mat1 * 5, KEMatrix<0>());
+}

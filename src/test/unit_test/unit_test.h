@@ -195,7 +195,7 @@ private:
 
     /** Vector Test End **/
 
-    /** Matrix Test Start**/
+    /** Matrix Test Start **/
 
     static void KETMatrixConstruct0();
     static void KETMatrixConstruct1();
@@ -205,6 +205,24 @@ private:
     static void KETMatrixToString1();
     static void KETMatrixToString2();
     static void KETMatrixToString3();
+    static void KETMatrixAdd0();
+    static void KETMatrixAdd1();
+    static void KETMatrixAdd2();
+    static void KETMatrixAdd3();
+    static void KETMatrixSub0();
+    static void KETMatrixSub1();
+    static void KETMatrixSub2();
+    static void KETMatrixSub3();
+    static void KETMatrixMul0();
+    static void KETMatrixMul1();
+    static void KETMatrixMul2();
+    static void KETMatrixMul3();
+    static void KETMatrixMul4();
+    static void KETMatrixMul5();
+    static void KETMatrixMul6();
+    static void KETMatrixMul7();
 
-    
+    /** Matrix Test End **/
+
+
 };
