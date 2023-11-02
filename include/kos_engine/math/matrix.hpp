@@ -19,7 +19,7 @@ private:
         float data_m[N][N];
     };
     static float matrix_buffer[SIZE];
-    static KEMatrix<N> matrix_buffer2;
+    inline static KEMatrix<N> matrix_buffer2 = KEMatrix<N>();
 
 public:
     /**
