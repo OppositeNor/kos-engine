@@ -19,6 +19,7 @@ private:
         float data_m[N][N];
     };
     static float matrix_buffer[SIZE];
+    static KEMatrix<N> matrix_buffer2;
 
 public:
     /**
@@ -127,6 +128,21 @@ public:
         return matrix_buffer;
     }
 
+    inline KEMatrix<N> Transpose()
+    {
+        KEMatrix<N> result;
+        for (int i = 0; i < N; ++i)
+        {
+            for (int j = i; j < N; ++j)
+            {
+                result[i][j] = data_m[j][i];
+                result[j][i] = data_m[i][j];
+            }
+        }
+        return result;
+    }
+
+    #pragma omp paralll for
     inline KEMatrix<N> operator*(const KEMatrix<N>& p_other) const noexcept
     {
         KEMatrix<N> result;
@@ -142,6 +158,24 @@ public:
             }
         }
         return result;
+    }
+
+    #pragma omp paralll for
+    inline KEMatrix<N>& operator*=(const KEMatrix<N>& p_other) noexcept
+    {
+        for (int i = 0; i < N; ++i)
+        {
+            for (int j = 0; j < N; ++j)
+            {
+                matrix_buffer2[i][j] = 0;
+                for (int k = 0; k < N; ++k)
+                {
+                    matrix_buffer2[i][j] += data_m[i][k] * p_other[k][j];
+                }
+            }
+        }
+        *this = matrix_buffer2;
+        return *this;
     }
 
     inline KEMatrix<N> operator*(float p_scalar) const noexcept
@@ -160,12 +194,6 @@ public:
         {
             data[i] *= p_scalar;
         }
-        return *this;
-    }
-
-    inline KEMatrix<N>& operator*=(const KEMatrix<N>& p_other) noexcept
-    {
-        *this = *this * p_other;
         return *this;
     }
 
@@ -207,6 +235,7 @@ public:
         return *this;
     }
 
+    #pragma omp paralll for
     inline KEVector<N> operator* (const KEVector<N>& p_vector) const noexcept
     {
         KEVector<N> result;
@@ -221,6 +250,7 @@ public:
         return result;
     }
 
+    #pragma omp paralll for
     inline KEVector<N-1> operator* (const KEVector<N-1>& p_vector) const noexcept
     {
         constexpr int result_dim = N - 1;

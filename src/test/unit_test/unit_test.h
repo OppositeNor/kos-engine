@@ -23,11 +23,7 @@
 #define KE_EXPECT_EXPRESSION_THROW_MSG(p_func, p_throw_msg) KEUnitTest::ExpectExpressionThrow(p_func, p_throw_msg, __FILE__, __LINE__)
 #define KE_EXPECT_EXPRESSION_THROW_TYPE(p_func, p_type) KEUnitTest::ExpectExpressionThrow<p_type>(p_func, __FILE__, __LINE__)
 
-template <typename T, typename = void>
-constexpr bool ke_has_to_string = false;
-
-template <typename T>
-constexpr bool ke_has_to_string<T, std::void_t<decltype(std::declval<T>().operator KEString())>> = true;
+KE_DECL_HAS_METHOD(operator KEString(), ke_has_to_string)
 
 /**
  * @brief Unit test class.
@@ -70,10 +66,10 @@ private:
      */
     template <typename T1, typename T2>
     inline static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
-        ->typename std::enable_if_t<ke_has_to_string<T1> && ke_has_to_string<T2>, void>
+        ->decltype((void)(val_1 == val_2), (void)((KEString)val_1), void())
     {
-            CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + (KEString)(val_2) + 
-                CGSTR(", but get ") + (KEString)(val_1) + CGSTR(" instead."), p_file, p_line);
+        CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + (KEString)(val_2) + 
+            CGSTR(", but get ") + (KEString)(val_1) + CGSTR(" instead."), p_file, p_line);
     }
 
     /**
@@ -86,10 +82,20 @@ private:
      */
     template <typename T1, typename T2>
     inline static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
-        ->typename std::enable_if_t<!(ke_has_to_string<T1> && ke_has_to_string<T2>), void>
+        ->decltype((void)(val_1 == val_2), (void)(KE_TO_STRING(val_1)), void())
     {
-            CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
-                CGSTR(", but get ") + KE_TO_STRING(val_1) + CGSTR(" instead."), p_file, p_line);
+        CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
+            CGSTR(", but get ") + KE_TO_STRING(val_1) + CGSTR(" instead."), p_file, p_line);
+    }
+    
+    /**
+     * @brief This function is called when the two values are not comparable or a KEString operator is missing.
+     * 
+     * @param ... 
+     */
+    inline static void ExpectValuesEqual(...)
+    {
+        CG_PRINT(CGSTR("Warning: The value is not comparable or missing a KEString operator."));
     }
 
     /**
