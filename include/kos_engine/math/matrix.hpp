@@ -188,6 +188,25 @@ public:
         return *this;
     }
 
+    inline KEMatrix<N> operator-(const KEMatrix<N>& p_other) noexcept
+    {
+        KEMatrix<N> result;
+        for (int i = 0; i < SIZE; ++i)
+        {
+            result.data[i] = data[i] - p_other.data[i];
+        }
+        return result;
+    }
+
+    inline KEMatrix<N>& operator-=(const KEMatrix<N>& p_other) noexcept
+    {
+        for (int i = 0; i < SIZE; ++i)
+        {
+            data[i] -= p_other.data[i];
+        }
+        return *this;
+    }
+
     inline KEVector<N> operator* (const KEVector<N>& p_vector) const noexcept
     {
         KEVector<N> result;
