@@ -7,8 +7,7 @@
 #include "cos_graphics/graphics.h"
 #include <vector>
 #include <string>
-#include "kos_engine/interface/rect_boarder.h"
-#include "kos_engine/interface/rect_shape.h"
+#include "kos_engine/interface/irect_boarder.h"
 #include "kos_engine/math/matrix.hpp"
 #include "kos_engine/defs.hpp"
 
@@ -205,13 +204,13 @@ public:
      * 
      * @return float The width of the shape.
      */
-    inline virtual float GetWidth() const noexcept override { return 0.0f; };
+    inline virtual float GetWidth() const override { return 0.0f; };
     /**
      * @brief Get the height of the shape.
      * 
      * @return float The height of the shape.
      */
-    inline virtual float GetHeight() const noexcept override { return 0.0f; };
+    inline virtual float GetHeight() const override { return 0.0f; };
 
     /**
      * @brief Get the local y coordinate value of the top of the shape.
@@ -220,7 +219,7 @@ public:
      * global y coordinate value of the top of the shape, use @ref GetBoarderTopY.
      * @return float The y coordinate value of the top of the shape.
      */
-    inline virtual float GetTopY() const noexcept override { return 0.0f; }
+    inline virtual float GetTopY() const override { return 0.0f; }
     /**
      * @brief Get the y coordinate value of the bottom of the shape.
      * @details This function only get the local coordinate value of theshape. It does not 
@@ -228,7 +227,7 @@ public:
      * global y coordinate value of the bottom of the shape, use @ref GetBoarderBottomY.
      * @return float The y coordinate value of the bottom of the shape.
      */
-    inline virtual float GetBottomY() const noexcept override { return 0.0f; }
+    inline virtual float GetBottomY() const override { return 0.0f; }
 
     /**
      * @brief Get the x coordinate value of the left of the shape.
@@ -237,7 +236,7 @@ public:
      * global x coordinate value of the left of the shape, use @ref GetBoarderLeftX.
      * @return float The x coordinate value of the left of the shape.
      */
-    inline virtual float GetLeftX() const noexcept override { return 0.0f; }
+    inline virtual float GetLeftX() const override { return 0.0f; }
 
     /**
      * @brief Get the x coordinate value of the right of the shape.
@@ -246,7 +245,7 @@ public:
      * global x coordinate value of the right of the shape, use @ref GetBoarderRightX.
      * @return float The x coordinate value of the right of the shape.
      */
-    inline virtual float GetRightX() const noexcept override { return 0.0f; }
+    inline virtual float GetRightX() const override { return 0.0f; }
 
 protected:
     /**

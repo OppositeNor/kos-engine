@@ -1,5 +1,7 @@
 # Component
 
+add_subdirectory(shape)
+
 set (KE_SOURCES
     ${PROJECT_SOURCE_DIR}/include/kos_engine/component/animation_sprite.h
     ${PROJECT_SOURCE_DIR}/include/kos_engine/component/camera.h

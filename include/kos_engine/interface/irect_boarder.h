@@ -1,11 +1,11 @@
 #pragma once
-#include "kos_engine/interface/rect_shape.h"
+#include "kos_engine/interface/irect.h"
 /**
  * @brief Interface for objects that can be enclosed by a boarder.
  * @note A boarder is a rectangle that enclosed the whole component. The whole
  * component also includes the children of the component.
  */
-class KEIRectBoarder : public KEIRectShape
+class KEIRectBoarder : public KEIRect
 {
 public:
     /**

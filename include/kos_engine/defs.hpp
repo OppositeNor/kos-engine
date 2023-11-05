@@ -18,3 +18,4 @@
     template <typename dT>                              \
     static constexpr bool bool_var_name<dT, std::void_t<decltype(std::declval<dT>().method)>> = true;
 
+#define KE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286
