@@ -14,8 +14,8 @@ public:
      * 
      * @param radius 
      */
-    explicit KEShapeCircle(float radius)
-        : radius(radius)
+    explicit KEShapeCircle(float radius = 1.0f)
+        : radius(abs(radius))
     {}
 
     virtual ~KEShapeCircle() override {};
@@ -26,7 +26,7 @@ public:
      * 
      * @return float The radius of the circle.
      */
-    float& GetRadius() {return radius;};
+    float& GetRadius() { return radius; }
 
     /**
      * @brief Get the radius of the circle.

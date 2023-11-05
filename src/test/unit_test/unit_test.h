@@ -230,5 +230,10 @@ private:
 
     /** Matrix Test End **/
 
-
+    /** Shape Test Start **/
+    static void KETShapeCircleConstruct0();
+    static void KETShapeCircleConstruct1();
+    static void KETShapeCircleConstruct2();
+    static void KETShapeCircleConstruct3();
+    
 };

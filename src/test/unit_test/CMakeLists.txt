@@ -1,4 +1,5 @@
 add_subdirectory(unit_test_math)
+add_subdirectory(unit_test_shape)
 
 set(KE_TEST_SOURCES
         ${KE_TEST_SOURCES}

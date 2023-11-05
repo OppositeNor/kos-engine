@@ -1,0 +1,6 @@
+set(KE_TEST_SOURCES
+    ${KE_TEST_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_shape.cpp
+
+    PARENT_SCOPE
+)
