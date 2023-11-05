@@ -4,7 +4,6 @@
  * @author OppositeNor
  * @brief The base class for all the components in the game.
  */
-#include "cos_graphics/graphics.h"
 #include <vector>
 #include <string>
 #include "kos_engine/interface/irect_boarder.h"
@@ -255,6 +254,13 @@ protected:
     bool visible = true;
 
     /**
+     * @brief Is the component locally visible.
+     * @details If this is set to false, this component will not be drawn. Setting this value won't 
+     * affect the children's visibility.
+     */
+    bool locally_visible = true;
+
+    /**
      * @brief Is the component queued to be freed.
      */
     bool is_queue_freed = false;
@@ -336,11 +342,11 @@ public:
     
 
     /**
-     * @brief Set if the component is visible in the game
+     * @brief Set if the component and its children is visible in the game.
      * 
      * @param p_visible The new value of visible
      */
-    void SetVisible(bool p_visible) noexcept;
+    inline void SetVisible(bool p_visible) noexcept {visible = p_visible;}
 
     /**
      * @brief Get if the component is visible.
@@ -371,6 +377,32 @@ public:
      * @return false The component is not visible in the game
      */
     bool IsVisible() const noexcept;
+
+    /**
+     * @brief Set if the component is locally visible.
+     * 
+     * @details If the component is locally invisible, it will not be drawn. If it is locally visible,
+     * it will be drawn if the parent is visible. Different from @ref SetVisible, this function will
+     * not affect the children's visibility, and local visibility does not depends on the parent's
+     * visibility. You can think of this value only depends on and affects on the component itself.
+     * 
+     * @example If the parent visibility is false, the component will not be drawn even if it is locally
+     * visible. However, if you call @ref GetLocallyVisible, it will return true. If you call @ref GetVisible,
+     * it will return false. 
+     * 
+     * @param p_visible Whether the component is locally visible.
+     */
+    void SetLocallyVisible(bool p_visible) noexcept {locally_visible = p_visible;}
+
+    /**
+     * @brief Is the component locally visible.
+     * 
+     * @details If the component is locally invisible, it will not be drawn. If it is locally visible,
+     * it will be drawn if the parent is visible. Different from @ref IsVisible, this function will
+     * not depends on the parent's visibility. You can think of this value only depends on and affects 
+     * on the component itself.
+     */
+    void GetLocallyVisible() const noexcept {locally_visible;}
 
     /**
      * @brief Called when the component is added to the game.

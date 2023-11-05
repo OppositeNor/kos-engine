@@ -102,15 +102,9 @@ float KEComponent::GetBoarder##Direction##AXIS() noexcept                   \
     return result;                                                          \
 }
 
-
-void KEComponent::SetVisible(bool p_visible) noexcept
-{
-    visible = p_visible;
-}
-
 bool KEComponent::IsVisible() const noexcept
 {
-    if (!visible)
+    if (!visible || !locally_visible)
         return false;
     if (GetParent() == nullptr)
         return true;
@@ -119,7 +113,7 @@ bool KEComponent::IsVisible() const noexcept
 
 bool KEComponent::GetVisible() const noexcept
 {
-    return visible;
+    return visible && locally_visible;
 }
 
 CGBoarderFunc(Top, Y, y, >)

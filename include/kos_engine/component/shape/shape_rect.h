@@ -1,8 +1,9 @@
 #pragma once
-#include "kos_engine/component/component.h"
+#include "kos_engine/component/visual_component.h"
 #include "kos_engine/interface/irect.h"
+#include <memory>
 
-class KEShapeRect : public KEComponent
+class KEShapeRect : public KEVisualComponent
 {
     KE_COMPONENT(KEShapeRect)
 
@@ -16,18 +17,50 @@ private:
      */
     float height;
 
+    /**
+     * @brief The quadrangle for CosGraphics to render.
+     */
+    std::unique_ptr<CGQuadrangle, decltype(CGFree)*> quadrangle_instance;
+
+    /**
+     * @brief Whether the quadrangle's width or height been changed.
+     */
+    bool need_update = false;
+
+    /**
+     * @brief Update the quadrangle/
+     */
+    void UpdateQuadrangle();
 public:
 
-    KEShapeRect(float width, float height)
-        : width(width), height(height)
-    {}
+    /**
+     * @brief Constor for KEShapeRect.
+     * 
+     * @param width The width of the rectangle shape.
+     * @param height The height of the rectangle shape.
+     */
+    KEShapeRect(float width, float height);
+    
+    /**
+     * @brief Set the width of the shape.
+     * 
+     * @param p_width The width to be set to.
+     */
+    void SetWidth(float p_width);
+
+    /**
+     * @brief Set the height of the shape.
+     * 
+     * @param p_height The height to be set to.
+     */
+    void SetHeight(float p_height);
 
     /**
      * @brief Get the width of the shape.
      * 
      * @return float The width of the shape.
      */
-    virtual float GetWidth() const override {return width;}
+    virtual float GetWidth() const override { return width; }
     /**
      * @brief Get the height of the shape.
      * 
@@ -62,4 +95,10 @@ public:
      */
     virtual float GetRightX() const override;
 
+    /**
+     * @brief Draw component on the window.
+     * 
+     * @param p_delta The time difference between frames
+     */
+    virtual void Draw(float p_delta) final override;
 };

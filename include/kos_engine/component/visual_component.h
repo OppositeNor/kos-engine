@@ -16,6 +16,8 @@ protected:
 
     /**
      * @brief Draw component on the window.
+     * 
+     * @param p_delta The time difference between frames
      */
     virtual void Draw(float p_delta) {};
 
