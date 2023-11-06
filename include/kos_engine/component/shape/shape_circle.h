@@ -1,8 +1,8 @@
 #pragma once
-#include "kos_engine/component/component.h"
+#include "kos_engine/component/visual_component.h"
 #include "kos_engine/interface/icircle.h"
 
-class KEShapeCircle : public KEComponent, public KEICircle
+class KEShapeCircle : public KEVisualComponent, public KEICircle
 {
     KE_COMPONENT(KEShapeCircle)
 

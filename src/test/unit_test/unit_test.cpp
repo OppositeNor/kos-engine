@@ -58,6 +58,10 @@ void KEUnitTest::Start()
     KETShapeCircleConstruct1();
     KETShapeCircleConstruct2();
     KETShapeCircleConstruct3();
+    KETShapeRectConstruct0();
+    KETShapeRectConstruct1();
+    KETShapeRectConstruct2();
+    KETShapeRectConstruct3();
 
     if (test_failed_count == 0)
         CG_PRINT(CGSTR("Unit test finished. %d test run, All tests passed."), test_count);

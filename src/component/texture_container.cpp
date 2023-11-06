@@ -32,7 +32,10 @@ float KETextureContainer::GetBoarder##Direction##AXIS() noexcept            \
 KETextureContainer::~KETextureContainer()
 {
     if (texture != nullptr)
+    {
         CGFree(texture);
+        texture = nullptr;
+    }
 }
 
 

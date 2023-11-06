@@ -13,7 +13,7 @@ class KETextureContainer : public KEVisualComponent
 {
     KE_COMPONENT(KETextureContainer)
 protected:
-    CGVisualImage* texture;
+    CGVisualImage* texture = nullptr;
 public:
 
     /**
@@ -105,7 +105,7 @@ public:
     /**
      * @brief Construct a new KETextureContainer object
      */
-    KETextureContainer() : texture(nullptr), KEVisualComponent() {}
+    KETextureContainer() : KEVisualComponent() {}
     /**
      * @brief Copy constructor
      */

@@ -39,7 +39,7 @@ public:
      * @param width The width of the rectangle shape.
      * @param height The height of the rectangle shape.
      */
-    KEShapeRect(float width, float height);
+    KEShapeRect(float width = 1.0f, float height = 1.0f);
     
     /**
      * @brief Set the width of the shape.

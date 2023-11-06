@@ -87,6 +87,20 @@ KEComponent::~KEComponent()
     KEGame::GetInstance()->RemoveComponent(this);
 }
 
+bool KEComponent::IsVisible() const noexcept
+{
+    if (!visible || !locally_visible)
+        return false;
+    if (GetParent() == nullptr)
+        return true;
+    return GetParent()->IsVisible();
+}
+
+bool KEComponent::GetVisible() const noexcept
+{
+    return visible && locally_visible;
+}
+
 #define CGBoarderFunc(Direction, AXIS, axis, comp)                          \
 float KEComponent::GetBoarder##Direction##AXIS() noexcept                   \
 {                                                                           \
@@ -102,24 +116,12 @@ float KEComponent::GetBoarder##Direction##AXIS() noexcept                   \
     return result;                                                          \
 }
 
-bool KEComponent::IsVisible() const noexcept
-{
-    if (!visible || !locally_visible)
-        return false;
-    if (GetParent() == nullptr)
-        return true;
-    return GetParent()->IsVisible();
-}
-
-bool KEComponent::GetVisible() const noexcept
-{
-    return visible && locally_visible;
-}
-
 CGBoarderFunc(Top, Y, y, >)
 CGBoarderFunc(Bottom, Y, y, <)
 CGBoarderFunc(Left, X, x, <)
 CGBoarderFunc(Right, X, x, >)
+
+#undef CGBoarderFunc
 
 void KEComponent::Tick(double p_delta_time)
 {

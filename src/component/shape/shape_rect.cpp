@@ -4,7 +4,7 @@
 #include "cos_graphics/graphics.h"
 
 KEShapeRect::KEShapeRect(float width, float height)
-        : width(width), height(height), 
+        : width(abs(width)), height(abs(height)), 
         quadrangle_instance(
             CGCreateQuadrangle((CGVector2){GetLeftX(), GetTopY()},
                            (CGVector2){GetRightX(), GetTopY()},

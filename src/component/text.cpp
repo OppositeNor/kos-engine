@@ -4,7 +4,10 @@
 void KEText::UpdateTextImage()
 {
     if (texture != nullptr)
+    {
         CGFree(texture);
+        texture = nullptr;
+    }
     if (text[0] == (CGChar)('\0'))
         return;
     if (font_rk[0] == (CGChar)('\0'))
