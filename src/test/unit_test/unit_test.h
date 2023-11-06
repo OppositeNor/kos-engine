@@ -235,10 +235,10 @@ private:
     static void KETShapeCircleConstruct1();
     static void KETShapeCircleConstruct2();
     static void KETShapeCircleConstruct3();
-    static void KETShapeRectConstruct0();
-    static void KETShapeRectConstruct1();
-    static void KETShapeRectConstruct2();
-    static void KETShapeRectConstruct3();
+    static void KETShapeRect0();
+    static void KETShapeRect1();
+    static void KETShapeRect2();
+    static void KETShapeRect3();
     
     /** Shape Test End **/
 };

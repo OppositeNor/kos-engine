@@ -371,7 +371,7 @@ public:
      * component is locally visible. Such as when you call SetVisible and set the visible
      * to true for the component, it can still be invisible if the parent is invisible in
      * the game. In this case IsVisible() will return false and GetVisible() will return 
-     * true.
+     * true. Also, whether the component is locally visible does not effect this function.
      * 
      * @return true The component is visible in the game
      * @return false The component is not visible in the game
@@ -402,7 +402,7 @@ public:
      * not depends on the parent's visibility. You can think of this value only depends on and affects 
      * on the component itself.
      */
-    void GetLocallyVisible() const noexcept {locally_visible;}
+    bool GetLocallyVisible() const noexcept { return locally_visible; }
 
     /**
      * @brief Called when the component is added to the game.

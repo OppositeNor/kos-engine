@@ -89,7 +89,7 @@ KEComponent::~KEComponent()
 
 bool KEComponent::IsVisible() const noexcept
 {
-    if (!visible || !locally_visible)
+    if (!visible)
         return false;
     if (GetParent() == nullptr)
         return true;

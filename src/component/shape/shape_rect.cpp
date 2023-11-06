@@ -10,7 +10,9 @@ KEShapeRect::KEShapeRect(float width, float height)
                            (CGVector2){GetRightX(), GetTopY()},
                            (CGVector2){GetRightX(), GetBottomY()},
                            (CGVector2){GetLeftX(), GetBottomY()}, CG_FALSE), CGFree)
-{}
+{
+    SetLocallyVisible(false);
+}
 
 void KEShapeRect::SetWidth(float p_width)
 {

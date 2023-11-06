@@ -41,7 +41,7 @@ KEVisualComponent::~KEVisualComponent()
 void KEVisualComponent::Tick(double p_delta_time)
 {
     KEComponent::Tick(p_delta_time);
-    if (!IsVisible() || IsQueueFreed())
+    if (!GetLocallyVisible() || !IsVisible() || IsQueueFreed())
         return;
 
     render_property->z = GetTransform().depth;

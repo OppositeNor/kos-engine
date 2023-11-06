@@ -22,7 +22,7 @@ void KEUnitTest::KETShapeCircleConstruct3()
     KE_EXPECT_VALUES_EQUAL(circle.GetRadius(), 3.0f);
 }
 
-void KEUnitTest::KETShapeRectConstruct0()
+void KEUnitTest::KETShapeRect0()
 {
     KEShapeRect rect(1.0f, 1.0f);
     KE_EXPECT_VALUES_EQUAL(rect.GetWidth(), 1.0f);
@@ -32,7 +32,7 @@ void KEUnitTest::KETShapeRectConstruct0()
     KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -0.5f);
     KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), 0.5f);
 }
-void KEUnitTest::KETShapeRectConstruct1()
+void KEUnitTest::KETShapeRect1()
 {
     KEShapeRect rect;
     KE_EXPECT_VALUES_EQUAL(rect.GetWidth(), 1.0f);
@@ -42,7 +42,7 @@ void KEUnitTest::KETShapeRectConstruct1()
     KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -0.5f);
     KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), 0.5f);
 }
-void KEUnitTest::KETShapeRectConstruct2()
+void KEUnitTest::KETShapeRect2()
 {
     KEShapeRect rect(3.0f, 4.0f);
     KE_EXPECT_VALUES_EQUAL(rect.GetWidth(), 3.0f);
@@ -52,7 +52,7 @@ void KEUnitTest::KETShapeRectConstruct2()
     KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -1.5f);
     KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), 1.5f);
 }
-void KEUnitTest::KETShapeRectConstruct3()
+void KEUnitTest::KETShapeRect3()
 {
     KEShapeRect rect(-3.0f, -4.0f);
     KE_EXPECT_VALUES_EQUAL(rect.GetWidth(), 3.0f);

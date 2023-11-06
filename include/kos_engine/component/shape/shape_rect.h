@@ -3,6 +3,10 @@
 #include "kos_engine/interface/irect.h"
 #include <memory>
 
+/**
+ * @brief A rectangle shape.
+ * @details This will be set locally invisible by default.
+ */
 class KEShapeRect : public KEVisualComponent
 {
     KE_COMPONENT(KEShapeRect)
