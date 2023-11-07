@@ -45,12 +45,14 @@ void KEUnitTest::KETShapeRect1()
 void KEUnitTest::KETShapeRect2()
 {
     KEShapeRect rect(3.0f, 4.0f);
+    rect.GetTransform().position.x -= 5.0f;
+    rect.GetTransform().position.y += 2.0f;
     KE_EXPECT_VALUES_EQUAL(rect.GetWidth(), 3.0f);
     KE_EXPECT_VALUES_EQUAL(rect.GetHeight(), 4.0f);
-    KE_EXPECT_VALUES_EQUAL(rect.GetTopY(), 2.0f);
-    KE_EXPECT_VALUES_EQUAL(rect.GetBottomY(), -2.0f);
-    KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -1.5f);
-    KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), 1.5f);
+    KE_EXPECT_VALUES_EQUAL(rect.GetTopY(), 4.0f);
+    KE_EXPECT_VALUES_EQUAL(rect.GetBottomY(), 0.0f);
+    KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -6.5f);
+    KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), -3.5f);
 }
 void KEUnitTest::KETShapeRect3()
 {
@@ -62,3 +64,4 @@ void KEUnitTest::KETShapeRect3()
     KE_EXPECT_VALUES_EQUAL(rect.GetLeftX(), -1.5f);
     KE_EXPECT_VALUES_EQUAL(rect.GetRightX(), 1.5f);
 }
+

@@ -38,22 +38,22 @@ void KEShapeRect::UpdateQuadrangle()
 
 float KEShapeRect::GetTopY() const
 {
-    return GetTransform().position.x + height / 2;
+    return GetTransform().position.y + height / 2;
 }
 
 float KEShapeRect::GetBottomY() const
 {
-    return GetTransform().position.x - height / 2;
+    return GetTransform().position.y - height / 2;
 }
 
 float KEShapeRect::GetLeftX() const
 {
-    return GetTransform().position.y - width / 2;
+    return GetTransform().position.x - width / 2;
 }
 
 float KEShapeRect::GetRightX() const
 {
-    return GetTransform().position.y + width / 2;
+    return GetTransform().position.x + width / 2;
 }
 
 void KEShapeRect::Draw(float p_delta)
