@@ -65,7 +65,7 @@ private:
      * @param val_2 Value 2.
      */
     template <typename T1, typename T2>
-    inline static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
+    KE_FORCE_INLINE static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
         ->decltype((void)(val_1 == val_2), (void)((KEString)val_1), void())
     {
         CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + (KEString)(val_2) + 
@@ -81,7 +81,7 @@ private:
      * @param val_2 Value 2.
      */
     template <typename T1, typename T2>
-    inline static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
+    KE_FORCE_INLINE static auto ExpectValuesEqual(T1&& val_1, T2&& val_2, const char* p_file, int p_line)
         ->decltype((void)(val_1 == val_2), (void)(KE_TO_STRING(val_1)), void())
     {
         CheckExpect(val_1 == val_2, CGSTR("Expected to get value: ") + KE_TO_STRING(val_2) + 
@@ -93,7 +93,7 @@ private:
      * 
      * @param ... 
      */
-    inline static void ExpectValuesEqual(...)
+    KE_FORCE_INLINE static void ExpectValuesEqual(...)
     {
         CG_PRINT(CGSTR("Warning: The value is not comparable or missing a KEString operator."));
     }
@@ -104,7 +104,7 @@ private:
      * @param p_str_1 The first string.
      * @param p_str_2 The second string.
      */
-    inline static void ExpectStringsEqual(const KEString& p_str_1, const KEString& p_str_2, const char* p_file, int p_line)
+    KE_FORCE_INLINE static void ExpectStringsEqual(const KEString& p_str_1, const KEString& p_str_2, const char* p_file, int p_line)
     {
         CheckExpect(p_str_1 == p_str_2, CGSTR("Expected to get string: \"") + p_str_2 + 
             CGSTR("\", but get \"") + p_str_1 + CGSTR("\" instead."), p_file, p_line);

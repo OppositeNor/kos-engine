@@ -51,27 +51,27 @@ public:
         : x(p_x), y(p_y)
     {}
     
-    explicit inline operator float*() noexcept
+    explicit KE_FORCE_INLINE operator float*() noexcept
     {
         return data;
     }
 
-    explicit inline operator const float*() const noexcept
+    explicit KE_FORCE_INLINE operator const float*() const noexcept
     {
         return data;
     }
 
-    inline float& operator[](int i) noexcept
+    KE_FORCE_INLINE float& operator[](int i) noexcept
     {
         return data[i];
     }
 
-    inline float operator[](int i) const noexcept
+    KE_FORCE_INLINE float operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    inline float Length() const noexcept
+    KE_FORCE_INLINE float Length() const noexcept
     {
         float result = 0;
         for (unsigned int i = 0; i < SIZE; ++i)
@@ -81,7 +81,7 @@ public:
         return sqrt(result);
     }
 
-    inline KEVector<2> Normalized() const noexcept
+    KE_FORCE_INLINE KEVector<2> Normalized() const noexcept
     {
         float length = Length();
         if (length == 0)
@@ -89,12 +89,12 @@ public:
         return *this / length;
     }
 
-    inline operator CGVector2() const noexcept
+    KE_FORCE_INLINE operator CGVector2() const noexcept
     {
         return CGConstructVector2(x, y);
     }
 
-    inline KEVector<N> operator+(const KEVector<N>& p_other) const noexcept
+    KE_FORCE_INLINE KEVector<N> operator+(const KEVector<N>& p_other) const noexcept
     {
         KEVector<N> result;
         for (unsigned int i = 0; i < SIZE; ++i)
@@ -104,7 +104,7 @@ public:
         return result;
     }
 
-    inline KEVector<N>& operator +=(const KEVector<N>& p_other) noexcept
+    KE_FORCE_INLINE KEVector<N>& operator +=(const KEVector<N>& p_other) noexcept
     {
         for (unsigned int i = 0; i < SIZE; ++i)
         {
@@ -113,7 +113,7 @@ public:
         return *this;
     }
 
-    inline KEVector<N> operator-(const KEVector<N>& p_other) const noexcept
+    KE_FORCE_INLINE KEVector<N> operator-(const KEVector<N>& p_other) const noexcept
     {
         KEVector<N> result;
         for (unsigned int i = 0; i < SIZE; ++i)
@@ -123,7 +123,7 @@ public:
         return result;
     }
 
-    inline KEVector<N>& operator -=(const KEVector<N>& p_other) noexcept
+    KE_FORCE_INLINE KEVector<N>& operator -=(const KEVector<N>& p_other) noexcept
     {
         for (unsigned int i = 0; i < SIZE; ++i)
         {
@@ -132,7 +132,7 @@ public:
         return *this;
     }
 
-    inline KEVector<N> operator*(float p_scaler) const noexcept
+    KE_FORCE_INLINE KEVector<N> operator*(float p_scaler) const noexcept
     {
         KEVector<N> result;
         for (unsigned int i = 0; i < SIZE; ++i)
@@ -142,7 +142,7 @@ public:
         return result;
     }
 
-    inline KEVector<N>& operator*=(float p_scaler) noexcept
+    KE_FORCE_INLINE KEVector<N>& operator*=(float p_scaler) noexcept
     {
         for (unsigned int i = 0; i < SIZE; ++i)
         {
@@ -151,7 +151,7 @@ public:
         return *this;
     }
 
-    inline bool operator ==(KEVector<N> other) noexcept
+    KE_FORCE_INLINE bool operator ==(KEVector<N> other) noexcept
     {
         for (unsigned int i = 0; i < SIZE; ++i)
         {
@@ -161,12 +161,12 @@ public:
         return true;
     }
 
-    inline bool operator !=(KEVector<N> other) noexcept
+    KE_FORCE_INLINE bool operator !=(KEVector<N> other) noexcept
     {
         return !(*this == other);
     }
 
-    inline operator KEString() const noexcept
+    KE_FORCE_INLINE operator KEString() const noexcept
     {
         KEString result = CGSTR("KEVector<");
         result += KE_TO_STRING(SIZE);
@@ -185,7 +185,7 @@ public:
 using KEVector2 = KEVector<2>;
 
 template<unsigned int N>
-inline float KEDot(const KEVector<N>& vec_1, const KEVector<N>& vec_2) noexcept
+KE_FORCE_INLINE float KEDot(const KEVector<N>& vec_1, const KEVector<N>& vec_2) noexcept
 {
     float result = 0;
     for (unsigned int i = 0; i < N; ++i)
@@ -195,12 +195,12 @@ inline float KEDot(const KEVector<N>& vec_1, const KEVector<N>& vec_2) noexcept
     return result;
 }
 
-inline float KECross(const KEVector2& vec_1, const KEVector2& vec_2) noexcept
+KE_FORCE_INLINE float KECross(const KEVector2& vec_1, const KEVector2& vec_2) noexcept
 {
     return vec_1[1] * vec_2[0] - vec_1[0] * vec_2[1];
 }
 
-inline KEVector<3> KECross(const KEVector<3>& vec_1, const KEVector<3>& vec_2) noexcept
+KE_FORCE_INLINE KEVector<3> KECross(const KEVector<3>& vec_1, const KEVector<3>& vec_2) noexcept
 {
     return KEVector<3>({
         vec_1[2] * vec_2[1] - vec_1[1] * vec_2[2],

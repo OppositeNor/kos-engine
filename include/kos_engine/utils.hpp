@@ -48,7 +48,7 @@ public:
      * @param p_center The center of the rotation.
      * @return KEVector2 The position of the vector after rotation.
      */
-    static inline KEVector2 GetVectorRotatedPosition(const KEVector2& p_position, float p_rotation, const KEVector2 p_center)
+    static KE_FORCE_INLINE KEVector2 GetVectorRotatedPosition(const KEVector2& p_position, float p_rotation, const KEVector2 p_center)
     {
         KEVector2 result;
         float sin_theta = sin(p_rotation);
@@ -60,7 +60,7 @@ public:
         return result;
     }
 
-    static inline float Dot(const KEVector2& p_vec_1, const KEVector2& p_vec_2) noexcept
+    static KE_FORCE_INLINE float Dot(const KEVector2& p_vec_1, const KEVector2& p_vec_2) noexcept
     {
         return p_vec_1.x * p_vec_2.x + p_vec_1.y * p_vec_2.y;
     }
@@ -71,7 +71,7 @@ static constexpr CGVector2 operator+(const CGVector2& p_vec1, const CGVector2& p
     return {p_vec1.x + p_vec2.x, p_vec1.y + p_vec2.y};
 }
 
-static inline CGVector2& operator+=(CGVector2& p_vec1, const CGVector2& p_vec2) noexcept
+static KE_FORCE_INLINE CGVector2& operator+=(CGVector2& p_vec1, const CGVector2& p_vec2) noexcept
 {
     p_vec1.x += p_vec2.x;
     p_vec1.y += p_vec2.y;
@@ -83,31 +83,31 @@ static constexpr CGVector2 operator-(const CGVector2& p_vec1, const CGVector2& p
     return {p_vec1.x - p_vec2.x, p_vec1.y - p_vec2.y};
 }
 
-static inline CGVector2& operator-=(CGVector2& p_vec1, const CGVector2& p_vec2) noexcept
+static KE_FORCE_INLINE CGVector2& operator-=(CGVector2& p_vec1, const CGVector2& p_vec2) noexcept
 {
     p_vec1.x -= p_vec2.x;
     p_vec1.y -= p_vec2.y;
     return p_vec1;
 }
 
-static inline CGVector2 operator*(const CGVector2& p_vec, float p_num) noexcept
+static KE_FORCE_INLINE CGVector2 operator*(const CGVector2& p_vec, float p_num) noexcept
 {
     return {p_vec.x * p_num, p_vec.y * p_num};
 }
 
-static inline CGVector2& operator*=(CGVector2& p_vec, float p_num) noexcept
+static KE_FORCE_INLINE CGVector2& operator*=(CGVector2& p_vec, float p_num) noexcept
 {
     p_vec.x *= p_num;
     p_vec.y *= p_num;
     return p_vec;
 }
 
-static inline CGVector2 operator*(float p_num, const CGVector2& p_vec) noexcept
+static KE_FORCE_INLINE CGVector2 operator*(float p_num, const CGVector2& p_vec) noexcept
 {
     return {p_vec.x * p_num, p_vec.y * p_num};
 }
 
-static inline CGVector2 operator/(const CGVector2& p_vec, float p_num)
+static KE_FORCE_INLINE CGVector2 operator/(const CGVector2& p_vec, float p_num)
 {
     return {p_vec.x / p_num, p_vec.y / p_num};
 }
@@ -119,7 +119,7 @@ static inline CGVector2 operator/(const CGVector2& p_vec, float p_num)
  * @param y The y value of the vector.
  * @return CGVector2 
  */
-static inline CGVector2 CGVec2(float x, float y)
+static KE_FORCE_INLINE CGVector2 CGVec2(float x, float y)
 {
     return (CGVector2){x, y};
 }
@@ -130,7 +130,7 @@ static inline CGVector2 CGVec2(float x, float y)
  * @param p_vec The vector to get the length from.
  * @return float The length of the vector.
  */
-static inline float length(const CGVector2& p_vec) noexcept
+static KE_FORCE_INLINE float length(const CGVector2& p_vec) noexcept
 {
     return sqrt(p_vec.x * p_vec.x + p_vec.y * p_vec.y);
 }
@@ -141,7 +141,7 @@ static inline float length(const CGVector2& p_vec) noexcept
  * @param p_vec The vector to be normalized.
  * @return CGVector2 The normalized vector.
  */
-static inline CGVector2 normalize(const CGVector2& p_vec) noexcept
+static KE_FORCE_INLINE CGVector2 normalize(const CGVector2& p_vec) noexcept
 {
     if (p_vec.x == 0 && p_vec.y == 0)
         return CGVec2(0.0f, 0.0f);
@@ -149,12 +149,12 @@ static inline CGVector2 normalize(const CGVector2& p_vec) noexcept
     return CGVec2(p_vec.x / length, p_vec.y / length);
 }
 
-static inline CGColor operator*(const CGColor& p_color, float p_num) noexcept
+static KE_FORCE_INLINE CGColor operator*(const CGColor& p_color, float p_num) noexcept
 {
     return {p_color.r * p_num, p_color.g * p_num, p_color.b * p_num, p_color.alpha * p_num};
 }
 
-static inline CGColor& operator*=(CGColor& p_color, float p_num) noexcept
+static KE_FORCE_INLINE CGColor& operator*=(CGColor& p_color, float p_num) noexcept
 {
     p_color.r *= p_num;
     p_color.g *= p_num;
@@ -163,12 +163,12 @@ static inline CGColor& operator*=(CGColor& p_color, float p_num) noexcept
     return p_color;
 }
 
-static inline CGColor operator*(const CGColor& p_color1, const CGColor& p_color2) noexcept
+static KE_FORCE_INLINE CGColor operator*(const CGColor& p_color1, const CGColor& p_color2) noexcept
 {
     return {p_color1.r * p_color2.r, p_color1.g * p_color2.g, p_color1.b * p_color2.b, p_color1.alpha * p_color2.alpha};
 }
 
-static inline CGColor& operator*=(CGColor& p_color1, const CGColor& p_color2) noexcept
+static KE_FORCE_INLINE CGColor& operator*=(CGColor& p_color1, const CGColor& p_color2) noexcept
 {
     p_color1.r *= p_color2.r;
     p_color1.g *= p_color2.g;

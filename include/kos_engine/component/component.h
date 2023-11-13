@@ -20,7 +20,7 @@
  */
 #define KE_COMPONENT(type) \
     public:                     \
-    inline virtual KEString GetComponentType() const noexcept override { return CGSTR(#type); } \
+    KE_FORCE_INLINE virtual KEString GetComponentType() const noexcept override { return CGSTR(#type); } \
     private:                
 
 /**
@@ -108,7 +108,7 @@ public:
      * 
      * @return KEString 
      */
-    inline virtual KEString GetComponentType() const noexcept {return CGSTR("KEComponent");}
+    KE_FORCE_INLINE virtual KEString GetComponentType() const noexcept {return CGSTR("KEComponent");}
 
     /**
      * @brief Called once when the component is activated.
@@ -146,7 +146,7 @@ public:
      * in alignment.
      * @return float The width of the boarder.
      */
-    inline virtual float GetBoarderWidth() noexcept override { return GetBoarderRightX() - GetBoarderLeftX(); };
+    KE_FORCE_INLINE virtual float GetBoarderWidth() noexcept override { return GetBoarderRightX() - GetBoarderLeftX(); };
     /**
      * @brief Get the height of the boarder.
      * @details The global height of the boarder is used for alignment. It can calculate the whole component's 
@@ -154,7 +154,7 @@ public:
      * in alignment.
      * @return float The height of the boarder.
      */
-    inline virtual float GetBoarderHeight() noexcept override { return GetBoarderTopY() - GetBoarderBottomY(); };
+    KE_FORCE_INLINE virtual float GetBoarderHeight() noexcept override { return GetBoarderTopY() - GetBoarderBottomY(); };
 
     /**
      * @brief Get the y coordinate value of the top of the boarder.
@@ -203,13 +203,13 @@ public:
      * 
      * @return float The width of the shape.
      */
-    inline virtual float GetWidth() const override { return 0.0f; };
+    KE_FORCE_INLINE virtual float GetWidth() const override { return 0.0f; };
     /**
      * @brief Get the height of the shape.
      * 
      * @return float The height of the shape.
      */
-    inline virtual float GetHeight() const override { return 0.0f; };
+    KE_FORCE_INLINE virtual float GetHeight() const override { return 0.0f; };
 
     /**
      * @brief Get the local y coordinate value of the top of the shape.
@@ -218,7 +218,7 @@ public:
      * global y coordinate value of the top of the shape, use @ref GetBoarderTopY.
      * @return float The y coordinate value of the top of the shape.
      */
-    inline virtual float GetTopY() const override { return 0.0f; }
+    KE_FORCE_INLINE virtual float GetTopY() const override { return 0.0f; }
     /**
      * @brief Get the y coordinate value of the bottom of the shape.
      * @details This function only get the local coordinate value of theshape. It does not 
@@ -226,7 +226,7 @@ public:
      * global y coordinate value of the bottom of the shape, use @ref GetBoarderBottomY.
      * @return float The y coordinate value of the bottom of the shape.
      */
-    inline virtual float GetBottomY() const override { return 0.0f; }
+    KE_FORCE_INLINE virtual float GetBottomY() const override { return 0.0f; }
 
     /**
      * @brief Get the x coordinate value of the left of the shape.
@@ -235,7 +235,7 @@ public:
      * global x coordinate value of the left of the shape, use @ref GetBoarderLeftX.
      * @return float The x coordinate value of the left of the shape.
      */
-    inline virtual float GetLeftX() const override { return 0.0f; }
+    KE_FORCE_INLINE virtual float GetLeftX() const override { return 0.0f; }
 
     /**
      * @brief Get the x coordinate value of the right of the shape.
@@ -244,7 +244,7 @@ public:
      * global x coordinate value of the right of the shape, use @ref GetBoarderRightX.
      * @return float The x coordinate value of the right of the shape.
      */
-    inline virtual float GetRightX() const override { return 0.0f; }
+    KE_FORCE_INLINE virtual float GetRightX() const override { return 0.0f; }
 
 protected:
     /**
@@ -269,12 +269,12 @@ public:
     /**
      * @brief Get the label of the component.
      */
-    inline const KEString GetLabel() const noexcept { return GetComponentType() + CGSTR(": ") + label; }
+    KE_FORCE_INLINE const KEString GetLabel() const noexcept { return GetComponentType() + CGSTR(": ") + label; }
     
     /**
      * @brief Get the label without the type of the component.
      */
-    inline const KEString& GetLabelRaw() const noexcept { return label; }
+    KE_FORCE_INLINE const KEString& GetLabelRaw() const noexcept { return label; }
 
     /**
      * @brief Is the component queued to free.
@@ -285,7 +285,7 @@ public:
      * @return true The component is queued to free.
      * @return false The component is not queued to free.
      */
-    inline const bool IsQueueFreed() const noexcept { return is_queue_freed; }
+    KE_FORCE_INLINE const bool IsQueueFreed() const noexcept { return is_queue_freed; }
 
     /**
      * @brief Get the label of the component.
@@ -346,7 +346,7 @@ public:
      * 
      * @param p_visible The new value of visible
      */
-    inline void SetVisible(bool p_visible) noexcept {visible = p_visible;}
+    KE_FORCE_INLINE void SetVisible(bool p_visible) noexcept {visible = p_visible;}
 
     /**
      * @brief Get if the component is visible.
@@ -547,7 +547,7 @@ public:
      * 
      * @return KETransform& The transform of the component.
      */
-    inline const KETransform& GetTransform() const noexcept { return transform; }
+    KE_FORCE_INLINE const KETransform& GetTransform() const noexcept { return transform; }
 
     /**
      * @brief Get the reference of the Transform object.

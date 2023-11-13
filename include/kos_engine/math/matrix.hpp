@@ -107,7 +107,7 @@ public:
      * 
      * @return float* The KEMatrix in column-major order
      */
-    inline const float* GetCColumnMajorMatrix() const noexcept
+    KE_FORCE_INLINE const float* GetCColumnMajorMatrix() const noexcept
     {
         for (int i = 0; i < N; ++i)
         {
@@ -119,7 +119,7 @@ public:
         return matrix_buffer;
     }
 
-    inline const float* GetCMatrix() const noexcept
+    KE_FORCE_INLINE const float* GetCMatrix() const noexcept
     {
         for (int i = 0; i < SIZE; ++i)
         {
@@ -128,7 +128,7 @@ public:
         return matrix_buffer;
     }
 
-    inline KEMatrix<N> Transpose()
+    KE_FORCE_INLINE KEMatrix<N> Transpose()
     {
         KEMatrix<N> result;
         for (int i = 0; i < N; ++i)
@@ -143,7 +143,7 @@ public:
     }
 
     #pragma omp paralll for
-    inline KEMatrix<N> operator*(const KEMatrix<N>& p_other) const noexcept
+    KE_FORCE_INLINE KEMatrix<N> operator*(const KEMatrix<N>& p_other) const noexcept
     {
         KEMatrix<N> result;
         for (int i = 0; i < N; ++i)
@@ -161,7 +161,7 @@ public:
     }
 
     #pragma omp paralll for
-    inline KEMatrix<N>& operator*=(const KEMatrix<N>& p_other) noexcept
+    KE_FORCE_INLINE KEMatrix<N>& operator*=(const KEMatrix<N>& p_other) noexcept
     {
         for (int i = 0; i < N; ++i)
         {
@@ -178,7 +178,7 @@ public:
         return *this;
     }
 
-    inline KEMatrix<N> operator*(float p_scalar) const noexcept
+    KE_FORCE_INLINE KEMatrix<N> operator*(float p_scalar) const noexcept
     {
         KEMatrix<N> result;
         for (int i = 0; i < SIZE; ++i)
@@ -188,7 +188,7 @@ public:
         return result;
     }
 
-    inline KEMatrix<N>& operator*=(float p_scalar) noexcept
+    KE_FORCE_INLINE KEMatrix<N>& operator*=(float p_scalar) noexcept
     {
         for (int i = 0; i < SIZE; ++i)
         {
@@ -197,7 +197,7 @@ public:
         return *this;
     }
 
-    inline KEMatrix<N> operator+(const KEMatrix<N>& p_other) noexcept
+    KE_FORCE_INLINE KEMatrix<N> operator+(const KEMatrix<N>& p_other) noexcept
     {
         KEMatrix<N> result;
         for (int i = 0; i < SIZE; ++i)
@@ -207,7 +207,7 @@ public:
         return result;
     }
 
-    inline KEMatrix<N>& operator+=(const KEMatrix<N>& p_other) noexcept
+    KE_FORCE_INLINE KEMatrix<N>& operator+=(const KEMatrix<N>& p_other) noexcept
     {
         for (int i = 0; i < SIZE; ++i)
         {
@@ -216,7 +216,7 @@ public:
         return *this;
     }
 
-    inline KEMatrix<N> operator-(const KEMatrix<N>& p_other) noexcept
+    KE_FORCE_INLINE KEMatrix<N> operator-(const KEMatrix<N>& p_other) noexcept
     {
         KEMatrix<N> result;
         for (int i = 0; i < SIZE; ++i)
@@ -226,7 +226,7 @@ public:
         return result;
     }
 
-    inline KEMatrix<N>& operator-=(const KEMatrix<N>& p_other) noexcept
+    KE_FORCE_INLINE KEMatrix<N>& operator-=(const KEMatrix<N>& p_other) noexcept
     {
         for (int i = 0; i < SIZE; ++i)
         {
@@ -236,7 +236,7 @@ public:
     }
 
     #pragma omp paralll for
-    inline KEVector<N> operator* (const KEVector<N>& p_vector) const noexcept
+    KE_FORCE_INLINE KEVector<N> operator* (const KEVector<N>& p_vector) const noexcept
     {
         KEVector<N> result;
         for (int i = 0; i < N; ++i)
@@ -251,7 +251,7 @@ public:
     }
 
     #pragma omp paralll for
-    inline KEVector<N-1> operator* (const KEVector<N-1>& p_vector) const noexcept
+    KE_FORCE_INLINE KEVector<N-1> operator* (const KEVector<N-1>& p_vector) const noexcept
     {
         constexpr int result_dim = N - 1;
         KEVector<result_dim> result;
@@ -266,7 +266,7 @@ public:
         return result;
     }
 
-    inline bool operator== (const KEMatrix<N> p_mat)
+    KE_FORCE_INLINE bool operator== (const KEMatrix<N> p_mat)
     {
         for (int i = 0; i < SIZE; ++i)
         {
@@ -276,7 +276,7 @@ public:
         return true;
     }
 
-    inline operator KEString()
+    KE_FORCE_INLINE operator KEString()
     {
         KEString result = CGSTR("KEMatrix<");
         result += KE_TO_STRING(DIM);
@@ -335,7 +335,7 @@ namespace KEMat3
     KEMat3 GetScaleMatrix(const KEVector2& p_scale) noexcept;
 }
 
-inline static CGVector2 operator*(const KEMat3::KEMat3& p_m, const CGVector2& p_v) noexcept
+KE_FORCE_INLINE static CGVector2 operator*(const KEMat3::KEMat3& p_m, const CGVector2& p_v) noexcept
 {
     return (CGVector2){p_m[0][0] * p_v.x + p_m[0][1] * p_v.y + p_m[0][2],
                         p_m[1][0] * p_v.x + p_m[1][1] * p_v.y + p_m[1][2]};

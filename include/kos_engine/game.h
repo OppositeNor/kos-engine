@@ -123,7 +123,7 @@ public:
      * 
      * @return KEComponent* The root component of the game.
      */
-    inline KEComponent* GetRootComponent() noexcept { return root_component; };
+    KE_FORCE_INLINE KEComponent* GetRootComponent() noexcept { return root_component; };
 
     /**
      * @brief Get the instance of the game. If the game is not started, this will return nullptr.
